@@ -309,14 +309,24 @@ nav {
   box-shadow: 0 10px 32px rgba(239,127,21,.5);
 }
 .btn-primary:hover::after { opacity: .7; transform: translateY(10px) scaleX(.92); }
+.hero-trust-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .hero-trust {
   font-size: 12.5px;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.5);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
 }
-.hero-trust::before { content:'✓'; color:rgba(255,255,255,.3); }
+.hero-trust::before {
+  content: '✓';
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--orange);
+}
 
 /* ── GOOGLE MAPS REDESIGN ────────────────── */
 .hero-right { animation: slideLeft .75s cubic-bezier(.16,1,.3,1) .2s both; }
@@ -1335,7 +1345,10 @@ footer {
         <p>La différence, c'est pas la qualité du travail.<br>C'est <strong>qui apparaît sur Google</strong> quand un client cherche un plombier, un électricien ou un carreleur près de chez lui.</p>
         <div class="hero-cta-row">
           <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Réserver mon diagnostic →</button>
-          <span class="hero-trust">Sans engagement · 30 minutes</span>
+          <div class="hero-trust-list">
+            <span class="hero-trust">Sans engagement</span>
+            <span class="hero-trust">30 minutes</span>
+          </div>
         </div>
       </div>
 
@@ -1758,13 +1771,9 @@ footer {
         </button>
         <div class="cta-checks">
           <span class="cta-check">Sans engagement</span>
-          <span class="cta-check">30 minutes chrono</span>
+          <span class="cta-check">30 minutes</span>
           <span class="cta-check">Sans obligation</span>
           <span class="cta-check">Résultats concrets</span>
-        </div>
-        <div class="cta-detail-row">
-          <span class="cta-detail-item">🔒 Aucune carte bancaire requise</span>
-          <span class="cta-detail-item">📞 Appel visio ou téléphone</span>
         </div>
       </div>
     </div>
