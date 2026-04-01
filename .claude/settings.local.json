@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open \"http://localhost:3000/landing_campagne1_btp.html\")",
+      "Bash(open \"http://localhost:59000/landing_campagne1_btp.html\")"
+    ]
+  }
+}
