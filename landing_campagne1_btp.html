@@ -691,8 +691,18 @@ nav {
 /* ═══════════════════════════════════════════
    SECTION GÉNÉRIQUE
 ═══════════════════════════════════════════ */
-.section { padding: 80px 0; }
-.section-alt { background: var(--white); }
+.section {
+  padding: 80px 0;
+  background-image: linear-gradient(rgba(0,0,0,.028) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,0,0,.028) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.section-alt {
+  background-color: var(--white);
+  background-image: linear-gradient(rgba(0,0,0,.028) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,0,0,.028) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
 .section-dark { background: var(--dark); padding:80px 0; }
 
 .section-tag {
@@ -961,18 +971,49 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(239,127,21,.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(239,127,21,.06) 0%, transparent 70%);
   pointer-events: none;
 }
-/* SVG vague */
+/* Mètre ruban horizontal */
+.diag-wave-section::after {
+  content: '';
+  position: absolute;
+  left: -10px; right: -10px;
+  top: 44%;
+  height: 26px;
+  transform: translateY(-50%);
+  background:
+    /* Grands traits (tous les 60px) */
+    repeating-linear-gradient(90deg,
+      rgba(239,127,21,.7)  0px, rgba(239,127,21,.7)  2px,
+      transparent          2px, transparent          58px,
+      rgba(239,127,21,.7) 58px, rgba(239,127,21,.7) 60px,
+      transparent         60px, transparent         118px
+    ),
+    /* Petits traits intermédiaires (tous les 15px) */
+    repeating-linear-gradient(90deg,
+      transparent          0px, transparent          14px,
+      rgba(239,127,21,.4) 14px, rgba(239,127,21,.4) 15px,
+      transparent         15px, transparent          29px,
+      rgba(239,127,21,.4) 29px, rgba(239,127,21,.4) 30px,
+      transparent         30px, transparent          44px,
+      rgba(239,127,21,.4) 44px, rgba(239,127,21,.4) 45px,
+      transparent         45px, transparent          60px
+    ),
+    rgba(239,127,21,.08);
+  border-top: 1.5px solid rgba(239,127,21,.45);
+  border-bottom: 1.5px solid rgba(239,127,21,.45);
+  pointer-events: none;
+  z-index: 0;
+}
+/* SVG vague (fil conducteur par dessus le ruban) */
 .diag-wave-svg {
   position: absolute;
-  top: 50%; left: 0; right: 0;
+  top: 44%; left: 0; right: 0;
   transform: translateY(-50%);
   width: 100%;
   pointer-events: none;
-  opacity: .18;
+  overflow: visible;
 }
 .diag-steps-row {
   display: grid;
@@ -1285,11 +1326,41 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   background-image: radial-gradient(circle at 80% 50%, rgba(255,255,255,.07) 0%, transparent 55%);
   pointer-events:none;
 }
+.cta-deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+.cta-deco-helmet {
+  width: 120px;
+  bottom: -10px; right: 5%;
+  opacity: .7;
+  transform: rotate(-12deg);
+}
+.cta-deco-wrench {
+  width: 80px;
+  top: 12px; left: 3%;
+  opacity: .7;
+  transform: rotate(25deg);
+}
+.cta-deco-bricks {
+  width: 180px;
+  top: 10px; right: 22%;
+  opacity: .8;
+}
+.cta-deco-ruler {
+  width: 200px;
+  bottom: 18px; left: 8%;
+  opacity: .7;
+  transform: rotate(-4deg);
+}
 .cta-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  position: relative;
+  z-index: 1;
   position: relative;
 }
 .cta-left h2 {
@@ -1855,10 +1926,20 @@ footer {
     </div>
     <div class="diag-wave-section">
 
-      <!-- Vague SVG en arrière-plan -->
-      <svg class="diag-wave-svg" viewBox="0 0 1200 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,80 C150,20 300,140 450,80 C600,20 750,140 900,80 C1050,20 1150,120 1200,80 L1200,160 L0,160 Z" fill="rgba(239,127,21,0.08)"/>
-        <path d="M0,80 C150,20 300,140 450,80 C600,20 750,140 900,80 C1050,20 1150,120 1200,80" fill="none" stroke="rgba(239,127,21,0.35)" stroke-width="2.5"/>
+      <!-- Fil conducteur SVG sur le mètre ruban -->
+      <svg class="diag-wave-svg" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ombre douce sous la courbe -->
+        <path d="M0,40 C150,5 300,75 450,40 C600,5 750,75 900,40 C1050,5 1150,60 1200,40"
+              fill="none" stroke="rgba(239,127,21,0.15)" stroke-width="12" stroke-linecap="round"/>
+        <!-- Ligne principale du fil -->
+        <path d="M0,40 C150,5 300,75 450,40 C600,5 750,75 900,40 C1050,5 1150,60 1200,40"
+              fill="none" stroke="rgba(239,127,21,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Points aux sommets de la vague (aux positions des bulles) -->
+        <circle cx="0"    cy="40" r="4" fill="rgba(239,127,21,0.6)"/>
+        <circle cx="300"  cy="40" r="4" fill="rgba(239,127,21,0.6)"/>
+        <circle cx="600"  cy="40" r="4" fill="rgba(239,127,21,0.6)"/>
+        <circle cx="900"  cy="40" r="4" fill="rgba(239,127,21,0.6)"/>
+        <circle cx="1200" cy="40" r="4" fill="rgba(239,127,21,0.6)"/>
       </svg>
 
       <div class="diag-steps-row">
@@ -2046,6 +2127,46 @@ footer {
      CTA
 ══════════════════════════════════════ -->
 <section class="cta-section" id="cta">
+
+  <!-- Décorations BTP fond -->
+  <svg class="cta-deco cta-deco-helmet" viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 44 C8 26 16 10 40 8 C64 10 72 26 72 44"/>
+    <line x1="4" y1="44" x2="76" y2="44"/>
+    <path d="M20 44 L20 50 Q20 56 26 56 L54 56 Q60 56 60 50 L60 44"/>
+    <line x1="40" y1="8" x2="40" y2="2"/>
+  </svg>
+
+  <svg class="cta-deco cta-deco-wrench" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42 4 a12 12 0 0 1 0 20 l-28 28 a6 6 0 0 1-8-8 l28-28 a12 12 0 0 1 8-12z"/>
+    <line x1="32" y1="14" x2="46" y2="28"/>
+  </svg>
+
+  <svg class="cta-deco cta-deco-bricks" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="1.5">
+    <!-- rangée 1 -->
+    <rect x="0" y="0" width="55" height="18" rx="1"/>
+    <rect x="60" y="0" width="55" height="18" rx="1"/>
+    <!-- rangée 2 décalée -->
+    <rect x="-20" y="21" width="55" height="18" rx="1"/>
+    <rect x="40" y="21" width="55" height="18" rx="1"/>
+    <rect x="100" y="21" width="40" height="18" rx="1"/>
+    <!-- rangée 3 -->
+    <rect x="0" y="42" width="55" height="18" rx="1"/>
+    <rect x="60" y="42" width="55" height="18" rx="1"/>
+  </svg>
+
+  <svg class="cta-deco cta-deco-ruler" viewBox="0 0 160 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5" stroke-linecap="round">
+    <rect x="0" y="6" width="160" height="20" rx="2"/>
+    <line x1="16" y1="6" x2="16" y2="0"/>
+    <line x1="32" y1="6" x2="32" y2="3"/>
+    <line x1="48" y1="6" x2="48" y2="0"/>
+    <line x1="64" y1="6" x2="64" y2="3"/>
+    <line x1="80" y1="6" x2="80" y2="0"/>
+    <line x1="96" y1="6" x2="96" y2="3"/>
+    <line x1="112" y1="6" x2="112" y2="0"/>
+    <line x1="128" y1="6" x2="128" y2="3"/>
+    <line x1="144" y1="6" x2="144" y2="0"/>
+  </svg>
+
   <div class="wrap">
     <div class="cta-grid">
       <div class="cta-left rv-l reveal">
