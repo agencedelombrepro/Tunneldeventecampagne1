@@ -356,7 +356,7 @@ nav {
 /* Barre de recherche Google Maps */
 .gmaps-searchrow {
   background: #fff;
-  padding: 10px 12px 0;
+  padding: 7px 10px 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -369,69 +369,69 @@ nav {
   gap: 7px;
   background: #f1f3f4;
   border-radius: 22px;
-  padding: 7px 13px;
-  font-size: 12.5px;
+  padding: 5px 11px;
+  font-size: 11.5px;
   color: #202124;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 .gmaps-tabs {
   display: flex;
   gap: 0;
   background: #fff;
-  padding: 0 14px;
+  padding: 0 10px;
   border-bottom: 1px solid #e8eaed;
 }
 .gmaps-tab {
-  font-size: 11.5px;
+  font-size: 10.5px;
   font-weight: 600;
   color: #1a73e8;
-  padding: 8px 10px;
+  padding: 5px 8px;
   border-bottom: 2px solid #1a73e8;
   white-space: nowrap;
 }
 .gmaps-tab-off {
-  font-size: 11.5px;
+  font-size: 10.5px;
   font-weight: 500;
   color: #5f6368;
-  padding: 8px 10px;
+  padding: 5px 8px;
   border-bottom: 2px solid transparent;
   white-space: nowrap;
 }
 
 /* Body = sidebar + map */
-.gmaps-body { display:flex; height:310px; }
+.gmaps-body { display:flex; height:auto; }
 
 /* ── SIDEBAR ── */
 .gmaps-list {
   width: 46%;
   border-right: 1px solid #e8eaed;
-  overflow-y: auto;
+  overflow: hidden;
   background: #fff;
 }
 .gmaps-list-header {
-  padding: 10px 12px 6px;
-  font-size: 11px;
+  padding: 6px 10px 5px;
+  font-size: 10px;
   color: #5f6368;
   font-weight: 600;
   border-bottom: 1px solid #f1f3f4;
 }
 .gmap-item {
-  padding: 10px 12px;
+  padding: 7px 10px;
   border-bottom: 1px solid #f1f3f4;
   cursor: pointer;
   transition: background .15s;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: flex-start;
 }
 .gmap-item:hover { background: #f8f9fa; }
 .gmap-num-badge {
-  width: 22px; height: 22px;
+  width: 20px; height: 20px;
   border-radius: 50%;
   background: #1a73e8;
   color: #fff;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   display: flex; align-items:center; justify-content:center;
   flex-shrink: 0;
@@ -439,16 +439,16 @@ nav {
   box-shadow: 0 2px 6px rgba(26,115,232,.4);
 }
 .gmap-info { flex: 1; min-width: 0; }
-.gmap-name   { font-size: 12.5px; font-weight: 700; color: #202124; margin-bottom: 2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.gmap-stars  { font-size: 10.5px; color: #e8710a; letter-spacing:.5px; }
-.gmap-rating { font-size: 10.5px; color: #5f6368; }
-.gmap-status { font-size: 10.5px; font-weight: 700; color: #188038; }
+.gmap-name   { font-size: 11.5px; font-weight: 700; color: #202124; margin-bottom: 1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.gmap-stars  { font-size: 9.5px; color: #e8710a; letter-spacing:.5px; }
+.gmap-rating { font-size: 9.5px; color: #5f6368; }
+.gmap-status { font-size: 9.5px; font-weight: 700; color: #188038; }
 
 .gmap-item.you-row {
   background: #fff8f6;
   border: 1.5px dashed #d93025;
-  border-radius: 8px;
-  margin: 6px 8px;
+  border-radius: 6px;
+  margin: 4px 6px;
 }
 .gmap-item.you-row .gmap-num-badge { background: #d93025; box-shadow:0 2px 6px rgba(217,48,37,.35); }
 .gmap-item.you-row .gmap-name  { color: #d93025; }
@@ -471,41 +471,43 @@ nav {
   flex: 1;
   position: relative;
   overflow: hidden;
-  background: #e8e0d0;
+  /* Fond carte Google Maps réaliste — grille de rues */
+  background-color: #e8e0d4;
+  background-image:
+    /* Rivière diagonale */
+    linear-gradient(135deg, transparent 62%, #aad4f5 62%, #aad4f5 70%, transparent 70%),
+    /* Artère principale horizontale */
+    linear-gradient(180deg, transparent 44%, #f5d98c 44%, #f5d98c 50%, transparent 50%),
+    /* Artère secondaire horizontale */
+    linear-gradient(180deg, transparent 68%, #ffffff 68%, #ffffff 72%, transparent 72%),
+    linear-gradient(180deg, transparent 22%, #ffffff 22%, #ffffff 25%, transparent 25%),
+    /* Rues verticales */
+    linear-gradient(90deg, transparent 30%, #ffffff 30%, #ffffff 33%, transparent 33%),
+    linear-gradient(90deg, transparent 55%, #ffffff 55%, #ffffff 58%, transparent 58%),
+    linear-gradient(90deg, transparent 78%, #ffffff 78%, #ffffff 80%, transparent 80%),
+    /* Parc */
+    radial-gradient(ellipse 30% 20% at 18% 15%, #c5dfa0 0%, #c5dfa0 85%, transparent 86%),
+    /* Bloc de bâtiments — textures */
+    repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(0,0,0,.025) 18px, rgba(0,0,0,.025) 19px),
+    repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(0,0,0,.025) 22px, rgba(0,0,0,.025) 23px);
+  min-height: 220px;
 }
-
-/* Blocs de bâtiments */
-.mb {
+/* Labels de rues */
+.map-street-label {
   position: absolute;
-  background: #d8cfbe;
-  border-radius: 2px;
-}
-/* Routes principales */
-.mr {
-  position: absolute;
-  background: #ffffff;
-}
-/* Route orange (artère principale) */
-.mr-main {
-  position: absolute;
-  background: #fdd07a;
-}
-/* Parc */
-.mp {
-  position: absolute;
-  background: #c8e6a0;
-  border-radius: 4px;
-}
-/* Eau */
-.mw {
-  position: absolute;
-  background: #a8d5f0;
+  font-size: 8px;
+  font-weight: 600;
+  color: #6b6b6b;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 3;
 }
 /* Vignette effet */
 .map-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.18) 100%);
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.15) 100%);
   pointer-events: none;
   z-index: 2;
 }
@@ -1195,6 +1197,15 @@ footer {
   gap: .5rem;
 }
 .footer-copy { font-size:12px; color:rgba(255,255,255,.25); }
+.footer-disclaimer {
+  border-top: 1px solid rgba(255,255,255,.05);
+  margin-top: 1rem;
+  padding-top: .875rem;
+  font-size: 10.5px;
+  color: rgba(255,255,255,.18);
+  line-height: 1.6;
+  text-align: center;
+}
 
 /* ═══════════════════════════════════════════
    RESPONSIVE — TABLET
@@ -1398,39 +1409,13 @@ footer {
 
             <!-- Carte -->
             <div class="gmaps-map-area">
-
-              <!-- Fond eau -->
-              <div class="mw" style="bottom:0;left:0;right:0;height:28%;clip-path:polygon(0 40%,100% 0,100% 100%,0 100%);"></div>
-
-              <!-- Parc -->
-              <div class="mp" style="top:8%;left:10%;width:28%;height:32%;"></div>
-              <div class="mp" style="top:55%;left:60%;width:18%;height:22%;"></div>
-
-              <!-- Routes principales (blanc) -->
-              <div class="mr" style="top:48%;left:0;right:0;height:7px;"></div>
-              <div class="mr" style="top:0;bottom:0;left:52%;width:7px;"></div>
-              <div class="mr" style="top:22%;left:0;right:0;height:4px;opacity:.7;"></div>
-              <div class="mr" style="top:0;bottom:0;left:25%;width:4px;opacity:.7;"></div>
-              <div class="mr" style="top:0;bottom:0;left:75%;width:4px;opacity:.6;"></div>
-              <div class="mr" style="top:70%;left:0;right:0;height:4px;opacity:.6;"></div>
-
-              <!-- Artère principale (orange) -->
-              <div class="mr-main" style="top:36%;left:0;right:0;height:5px;"></div>
-
-              <!-- Blocs bâtiments -->
-              <div class="mb" style="top:2%;left:2%;width:20%;height:18%;"></div>
-              <div class="mb" style="top:2%;left:28%;width:20%;height:18%;"></div>
-              <div class="mb" style="top:2%;left:55%;width:16%;height:18%;"></div>
-              <div class="mb" style="top:2%;left:78%;width:20%;height:18%;"></div>
-              <div class="mb" style="top:26%;left:2%;width:18%;height:8%;"></div>
-              <div class="mb" style="top:26%;left:55%;width:14%;height:8%;"></div>
-              <div class="mb" style="top:26%;left:78%;width:20%;height:8%;"></div>
-              <div class="mb" style="top:54%;left:2%;width:18%;height:12%;"></div>
-              <div class="mb" style="top:54%;left:28%;width:20%;height:12%;"></div>
-              <div class="mb" style="top:54%;left:55%;width:14%;height:10%;"></div>
-              <div class="mb" style="top:74%;left:2%;width:22%;height:14%;"></div>
-              <div class="mb" style="top:74%;left:28%;width:18%;height:14%;"></div>
-              <div class="mb" style="top:74%;left:78%;width:20%;height:14%;"></div>
+              <!-- Labels de rues -->
+              <div class="map-street-label" style="top:46%;left:4%;transform:translateY(-50%)">Rue de Rivoli</div>
+              <div class="map-street-label" style="top:70%;left:4%;transform:translateY(-50%)">Bd Haussmann</div>
+              <div class="map-street-label" style="top:22%;left:4%;transform:translateY(-50%);font-size:7px;opacity:.7">Rue St-Honoré</div>
+              <div class="map-street-label" style="top:8%;left:32%;transform:rotate(90deg);transform-origin:left center">Rue du Louvre</div>
+              <div class="map-street-label" style="top:8%;left:57%;transform:rotate(90deg);transform-origin:left center">Av. de l'Opéra</div>
+              <div class="map-street-label" style="top:6%;left:14%;font-size:7px;color:#5a9e5a;font-weight:700">Jardin des Tuileries</div>
 
               <!-- Pins concurrents -->
               <div class="map-marker" style="top:30%;left:38%;">
@@ -1831,7 +1816,7 @@ footer {
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 Agence de l'Ombre · Tous droits réservés</div>
+      <div class="footer-copy">© 2026 Agence de l'Ombre · Tous droits réservés · Ce site ne fait pas partie du site web Facebook ou de Facebook, Inc. En outre, ce site n'est pas endossé par Facebook en aucune façon. Facebook est une marque déposée de Facebook, Inc.</div>
       <div class="footer-copy"><a href="https://site.agencedelombre.fr" target="_blank" style="color:var(--orange);text-decoration:none;">site.agencedelombre.fr</a></div>
     </div>
   </div>
