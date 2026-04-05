@@ -368,6 +368,32 @@ nav {
   color: var(--orange);
 }
 
+/* ── SERVICES TAGS ───────────────────────── */
+.services-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.services-tags .stag {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 99px;
+  white-space: nowrap;
+  letter-spacing: .1px;
+}
+.services-tags.dark .stag {
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.7);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.services-tags.light .stag {
+  background: rgba(239,127,21,.08);
+  color: var(--orange-dk);
+  border: 1px solid rgba(239,127,21,.25);
+}
+
 /* ── GOOGLE MAPS REDESIGN ────────────────── */
 .hero-right { animation: slideLeft .75s cubic-bezier(.16,1,.3,1) .2s both; }
 
@@ -704,6 +730,7 @@ nav {
   background-size: 48px 48px;
 }
 .section-dark { background: var(--dark); padding:80px 0; }
+.section-no-grid { background-image: none; }
 
 .section-tag {
   display: inline-flex;
@@ -998,6 +1025,9 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   padding: 3rem 0 2rem;
   overflow: visible;
 }
+.diag-wave-svg {
+  overflow: visible;
+}
 .diag-wave-section::before {
   content: '';
   position: absolute;
@@ -1006,15 +1036,30 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   pointer-events: none;
 }
 /* Boîtier mètre ruban */
-.tape-housing {
-  position: absolute;
-  left: -30px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 90px;
-  height: 90px;
-  z-index: 2;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+.tape-housing { display: none; }
+
+/* Layout mètre ruban */
+.diag-main-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+.diag-meter-anchor {
+  flex-shrink: 0;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tape-start-img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(0,0,0,0.28));
+  position: relative;
+  z-index: 3;
 }
 /* Mètre ruban SVG */
 .diag-wave-svg {
@@ -1036,6 +1081,7 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   transform: translateY(0);
 }
 .diag-steps-row {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
@@ -1294,6 +1340,8 @@ h2.section-title em { color:var(--orange); font-style:normal; }
 .urgency-text strong { font-weight:800; }
 
 /* Slot counter */
+.slot-counter-link { text-decoration: none; cursor: pointer; }
+.slot-counter-link:hover { opacity: .85; }
 .slot-counter {
   display: inline-flex;
   align-items: center;
@@ -1362,8 +1410,9 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   content: '';
   position: absolute; inset: 0;
   background-image:
-    radial-gradient(circle, rgba(255,255,255,.18) 1px, transparent 1px);
-  background-size: 28px 28px;
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 44px 44px;
   pointer-events: none; z-index: 0;
 }
 .cta-bg-art {
@@ -1595,12 +1644,12 @@ footer {
     <div class="ticker-wrap">
       <div class="ticker-inner">
         <span class="ticker-item">+25 artisans BTP accompagnés en France <span class="ticker-dot"></span></span>
-        <span class="ticker-item">Fiche Google · Site Web · Référencement · Meta Ads</span>
+        <span class="ticker-item">Fiche Google · Site Web · Référencement · Réseaux Sociaux · Publicités Meta Ads · Branding et Identité visuelle</span>
         <span class="ticker-item"><span>100%</span> spécialisée BTP <span class="ticker-dot"></span></span>
         <span class="ticker-item">Diagnostic de Visibilité <span>· 30 minutes</span></span>
         <span class="ticker-item">Agence de marketing · France entière <span class="ticker-dot"></span></span>
         <span class="ticker-item">+25 artisans BTP accompagnés en France <span class="ticker-dot"></span></span>
-        <span class="ticker-item">Fiche Google · Site Web · Référencement · Meta Ads</span>
+        <span class="ticker-item">Fiche Google · Site Web · Référencement · Réseaux Sociaux · Publicités Meta Ads · Branding et Identité visuelle</span>
         <span class="ticker-item"><span>100%</span> spécialisée BTP <span class="ticker-dot"></span></span>
         <span class="ticker-item">Diagnostic de Visibilité <span>· 30 minutes</span></span>
         <span class="ticker-item">Agence de marketing · France entière <span class="ticker-dot"></span></span>
@@ -1634,7 +1683,7 @@ footer {
         <div class="nav-logo-sub">Spécialiste BTP</div>
       </div>
     </a>
-    <a href="#cta" class="nav-cta">Réserver mon Diagnostic Visibilité →</a>
+    <a href="https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8" target="_blank" class="nav-cta">Réserver mon Diagnostic Visibilité →</a>
   </div>
 </nav>
 </div><!-- /.header-sticky -->
@@ -1656,11 +1705,21 @@ footer {
         <h1>Pourquoi certains artisans sont <em>complets</em>… et d'autres attendent que le téléphone sonne ?</h1>
         <p>La différence, ce n'est pas la qualité du travail mais c'est <strong>QUI apparaît sur Google</strong> quand un client cherche un plombier, un électricien ou un carreleur près de chez lui.</p>
         <div class="hero-cta-row">
-          <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Réserver mon diagnostic visibilité →</button>
+          <button class="btn-primary" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8','_blank')">Réserver mon diagnostic visibilité →</button>
           <div class="hero-trust-list">
             <span class="hero-trust">Sans engagement</span>
             <span class="hero-trust">30 minutes</span>
           </div>
+        </div>
+        <div class="services-tags dark">
+          <span class="stag">Fiche Google</span>
+          <span class="stag">Site Web</span>
+          <span class="stag">Référencement</span>
+          <span class="stag">Publicités Méta Ads</span>
+          <span class="stag">Réseaux Sociaux</span>
+          <span class="stag">Shooting Chantiers</span>
+          <span class="stag">Identité visuelle</span>
+          <span class="stag">Branding</span>
         </div>
       </div>
 
@@ -1895,10 +1954,10 @@ footer {
           <span class="q-text">En quelle position apparais-tu dans les résultats de recherche Google ?</span>
         </div>
         <div class="btn-group">
-          <button class="calc-btn" onclick="setPosition('top3',0.15,'En top 3 tu captes ~85% des clics,mais encore optimisable.',this,'Top 3')">Top 3</button>
-          <button class="calc-btn" onclick="setPosition('p4a10',0.55,'En position 4-10 tu rates plus de la moitié des recherches.',this,'Position 4-10')">Position 4-10</button>
-          <button class="calc-btn" onclick="setPosition('p2',0.80,'En page 2 moins de 5% des clients arrivent jusqu\'à toi.',this,'Page 2+')">Page 2+</button>
-          <button class="calc-btn" onclick="setPosition('inv',0.90,'Sans position connue tu es probablement invisible.',this,'Je ne sais pas')">Je ne sais pas</button>
+          <button class="calc-btn" onclick="setPosition('top3',0.15,'Je suis bien placé, mais il y a encore de la marge pour capter plus de clients.',this,'Je suis dans le top 3')">Je suis dans le top 3</button>
+          <button class="calc-btn" onclick="setPosition('p4a10',0.55,'Je suis visible, mais la majorité des clients cliquent avant d\'arriver jusqu\'à moi.',this,'Je suis entre la position 4 et 10')">Je suis entre la position 4 et 10</button>
+          <button class="calc-btn" onclick="setPosition('p2',0.80,'Je suis en page 2 ou plus : moins de 5% des clients me trouvent.',this,'Je suis en page 2 ou plus')">Je suis en page 2 ou plus</button>
+          <button class="calc-btn" onclick="setPosition('inv',0.90,'Je ne sais pas où j\'apparais : c\'est souvent le signe qu\'on est peu visible.',this,'Je ne sais pas où j\'apparais')">Je ne sais pas où j'apparais</button>
         </div>
         <div class="q-done-row"><span class="q-done-value" id="done-3"></span><span class="q-edit-hint">Modifier</span></div>
       </div>
@@ -1922,12 +1981,12 @@ footer {
         <div class="result-left">
           <div class="result-label">Tu perds chaque mois</div>
           <div class="result-amount" id="perte-mois">—</div>
-          <div class="result-sub">en chantiers envoyés chez tes concurrents</div>
+          <div class="result-sub">de chiffre d'affaires laissé à tes concurrents</div>
         </div>
         <div class="result-right">
           <div class="result-badge" id="perte-annee"></div>
           <div class="result-expl" id="explication"></div>
-          <button class="result-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+          <button class="result-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8','_blank')">
             Réserver mon diagnostic visibilité →
           </button>
         </div>
@@ -1954,49 +2013,57 @@ footer {
         <defs>
           <linearGradient id="tapeGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%"   stop-color="#FFF8E1"/>
-            <stop offset="30%"  stop-color="#FFE082"/>
-            <stop offset="65%"  stop-color="#FFD740"/>
-            <stop offset="100%" stop-color="#FFA000"/>
+            <stop offset="25%"  stop-color="#FFE57A"/>
+            <stop offset="60%"  stop-color="#FFD025"/>
+            <stop offset="100%" stop-color="#E6A800"/>
           </linearGradient>
           <linearGradient id="tapeGradShine" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="rgba(255,255,255,0.55)"/>
-            <stop offset="50%"  stop-color="rgba(255,255,255,0)"/>
-            <stop offset="100%" stop-color="rgba(0,0,0,0.12)"/>
+            <stop offset="0%"   stop-color="rgba(255,255,255,0.5)"/>
+            <stop offset="45%"  stop-color="rgba(255,255,255,0)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0.10)"/>
           </linearGradient>
-          <!-- ClipPath qui s'ouvre de gauche à droite -->
+          <linearGradient id="metalGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#D8E2E8"/>
+            <stop offset="40%"  stop-color="#A8B8C2"/>
+            <stop offset="100%" stop-color="#78909C"/>
+          </linearGradient>
           <clipPath id="tapeRevealClip">
-            <rect id="tapeRevealRect" x="-10" y="0" width="0" height="320"/>
+            <rect id="tapeRevealRect" x="118" y="0" width="0" height="320"/>
           </clipPath>
         </defs>
 
         <!-- Groupe clipé = ruban qui se déroule -->
         <g clip-path="url(#tapeRevealClip)">
-          <!-- Ombre portée -->
-          <path d="M0,155 C70,155 90,70 150,70 C210,70 330,240 450,240 C570,240 670,70 750,70 C830,70 950,240 1050,240 C1110,240 1150,155 1200,155"
-                fill="none" stroke="rgba(0,0,0,0.13)" stroke-width="32" stroke-linecap="round"
-                transform="translate(0,6)"/>
-          <!-- Corps jaune/ambré -->
-          <path d="M0,155 C70,155 90,70 150,70 C210,70 330,240 450,240 C570,240 670,70 750,70 C830,70 950,240 1050,240 C1110,240 1150,155 1200,155"
-                fill="none" stroke="url(#tapeGrad)" stroke-width="28" stroke-linecap="round"/>
-          <!-- Reflet -->
-          <path d="M0,155 C70,155 90,70 150,70 C210,70 330,240 450,240 C570,240 670,70 750,70 C830,70 950,240 1050,240 C1110,240 1150,155 1200,155"
-                fill="none" stroke="url(#tapeGradShine)" stroke-width="28" stroke-linecap="round"/>
-          <!-- Bord supérieur -->
-          <path d="M0,142 C70,142 90,57 150,57 C210,57 330,227 450,227 C570,227 670,57 750,57 C830,57 950,227 1050,227 C1110,227 1150,142 1200,142"
-                fill="none" stroke="rgba(120,70,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Bord inférieur -->
-          <path d="M0,168 C70,168 90,83 150,83 C210,83 330,253 450,253 C570,253 670,83 750,83 C830,83 950,253 1050,253 C1110,253 1150,168 1200,168"
-                fill="none" stroke="rgba(120,70,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Grands traits -->
-          <path d="M0,155 C70,155 90,70 150,70 C210,70 330,240 450,240 C570,240 670,70 750,70 C830,70 950,240 1050,240 C1110,240 1150,155 1200,155"
-                fill="none" stroke="rgba(100,55,0,0.55)" stroke-width="20" stroke-linecap="butt"
-                stroke-dasharray="1.8 28.2"/>
-          <!-- Petits traits -->
-          <path d="M0,155 C70,155 90,70 150,70 C210,70 330,240 450,240 C570,240 670,70 750,70 C830,70 950,240 1050,240 C1110,240 1150,155 1200,155"
-                fill="none" stroke="rgba(100,55,0,0.3)" stroke-width="10" stroke-linecap="butt"
-                stroke-dasharray="1 9"/>
-        </g>
 
+          <!-- ── OMBRE PORTÉE ruban ── -->
+          <path d="M118,158 L160,158 C200,158 230,88 290,88 C390,88 500,232 600,232 C700,232 800,88 900,88 C990,88 1060,232 1130,232 C1168,232 1188,158 1200,158"
+                fill="none" stroke="rgba(0,0,0,0.14)" stroke-width="34" stroke-linecap="butt"
+                transform="translate(0,7)"/>
+          <!-- ── CORPS RUBAN jaune ── -->
+          <path d="M118,158 L160,158 C200,158 230,88 290,88 C390,88 500,232 600,232 C700,232 800,88 900,88 C990,88 1060,232 1130,232 C1168,232 1188,158 1200,158"
+                fill="none" stroke="url(#tapeGrad)" stroke-width="30" stroke-linecap="butt"/>
+          <!-- ── REFLET ruban ── -->
+          <path d="M118,158 L160,158 C200,158 230,88 290,88 C390,88 500,232 600,232 C700,232 800,88 900,88 C990,88 1060,232 1130,232 C1168,232 1188,158 1200,158"
+                fill="none" stroke="url(#tapeGradShine)" stroke-width="30" stroke-linecap="butt"/>
+          <!-- ── BORD SUPÉRIEUR ── -->
+          <path d="M118,144 L160,144 C200,144 230,74 290,74 C390,74 500,218 600,218 C700,218 800,74 900,74 C990,74 1060,218 1130,218 C1168,218 1188,144 1200,144"
+                fill="none" stroke="rgba(140,80,0,0.55)" stroke-width="1.5" stroke-linecap="butt"/>
+          <!-- ── BORD INFÉRIEUR ── -->
+          <path d="M118,172 L160,172 C200,172 230,102 290,102 C390,102 500,246 600,246 C700,246 800,102 900,102 C990,102 1060,246 1130,246 C1168,246 1188,172 1200,172"
+                fill="none" stroke="rgba(140,80,0,0.55)" stroke-width="1.5" stroke-linecap="butt"/>
+          <!-- ── GRANDS TRAITS (cm) ── -->
+          <path d="M118,158 L160,158 C200,158 230,88 290,88 C390,88 500,232 600,232 C700,232 800,88 900,88 C990,88 1060,232 1130,232 C1168,232 1188,158 1200,158"
+                fill="none" stroke="rgba(110,60,0,0.6)" stroke-width="22" stroke-linecap="butt"
+                stroke-dasharray="2 30"/>
+          <!-- ── PETITS TRAITS (mm) ── -->
+          <path d="M118,158 L160,158 C200,158 230,88 290,88 C390,88 500,232 600,232 C700,232 800,88 900,88 C990,88 1060,232 1130,232 C1168,232 1188,158 1200,158"
+                fill="none" stroke="rgba(110,60,0,0.28)" stroke-width="10" stroke-linecap="butt"
+                stroke-dasharray="1.2 9.8"/>
+          <!-- ── LIGNE CENTRALE ── -->
+          <path d="M118,158 L160,158 C200,158 230,88 290,88 C390,88 500,232 600,232 C700,232 800,88 900,88 C990,88 1060,232 1130,232 C1168,232 1188,158 1200,158"
+                fill="none" stroke="rgba(110,60,0,0.18)" stroke-width="1" stroke-linecap="butt"/>
+
+        </g>
       </svg>
 
       <!-- Boîtier du mètre ruban (toujours visible, point de départ) -->
@@ -2023,6 +2090,10 @@ footer {
         <line x1="79" y1="57" x2="79" y2="69" stroke="rgba(100,55,0,0.5)" stroke-width="1"/>
       </svg>
 
+      <div class="diag-main-row">
+      <div class="diag-meter-anchor">
+        <img src="Metre.jpg" alt="" class="tape-start-img">
+      </div>
       <div class="diag-steps-row">
 
         <!-- Étape 1,haut -->
@@ -2065,7 +2136,8 @@ footer {
           </div>
         </div>
 
-      </div>
+      </div><!-- /.diag-steps-row -->
+      </div><!-- /.diag-main-row -->
     </div>
   </div>
 </section>
@@ -2073,7 +2145,7 @@ footer {
 <!-- ══════════════════════════════════════
      SOCIAL PROOF
 ══════════════════════════════════════ -->
-<section class="section">
+<section class="section section-no-grid">
   <div class="wrap">
     <div class="rv-l reveal">
       <div class="section-tag">Avis Google</div>
@@ -2175,7 +2247,7 @@ footer {
             <div class="agence-brand-tag">Spécialisée BTP · France entière</div>
           </div>
         </div>
-        <div class="agence-desc">On ne fait pas de communication généraliste. On structure la visibilité locale des entreprises du BTP : fiche Google, site internet, référencement, publicités. Notre spécialisation, c'est notre force, on connaît ton marché, tes concurrents, et ce que cherchent tes clients.</div>
+        <div class="agence-desc">On ne fait pas de communication généraliste. On structure la visibilité locale des entreprises du BTP : fiche Google, site web, référencement, publicités Méta Ads, réseaux sociaux, shooting chantiers, identité visuelle et branding. Notre spécialisation, c'est notre force, on connaît ton marché, tes concurrents, et ce que cherchent tes clients.</div>
         <div class="agence-stats-row">
           <div class="agence-stat">
             <div class="agence-stat-num">+25</div>
@@ -2193,10 +2265,10 @@ footer {
         <div class="urgency-strip">
           <div class="urgency-icon">⚠️</div>
           <div class="urgency-text">Les créneaux sont <strong>limités chaque semaine</strong>, il reste
-            <span class="slot-counter">
+            <a href="https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8" target="_blank" class="slot-counter slot-counter-link">
               <strong id="placesCount" class="places-num">9</strong>
               <span class="slot-label">places disponibles</span>
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -2236,7 +2308,7 @@ footer {
         <p>Le Diagnostic de Visibilité identifie exactement ce qui bloque, et ce qu'il faut changer pour que tes clients te trouvent avant tes concurrents. Sans engagement, 100% personnalisé pour ton activité BTP.</p>
       </div>
       <div class="cta-right rv-r reveal">
-        <button class="cta-main-btn" onclick="alert('Redirection vers le calendrier de réservation')">
+        <button class="cta-main-btn" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8','_blank')">
           Réserver mon Diagnostic Visibilité →
         </button>
         <div class="cta-checks">
@@ -2268,7 +2340,7 @@ footer {
           </g>
         </svg>
         <div class="footer-brand-tag">Spécialisée BTP · France entière</div>
-        <div class="footer-brand-desc">On structure la visibilité locale des artisans BTP : fiche Google, site web, référencement et publicités.</div>
+        <div class="footer-brand-desc">On structure la visibilité locale des artisans BTP : site web, réseaux sociaux, publicités et branding.</div>
         <div class="footer-socials">
           <a href="https://www.instagram.com/agence.de.lombre/" target="_blank" class="footer-social-link" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -2287,10 +2359,14 @@ footer {
       </div>
       <div>
         <div class="footer-col-title">Nos services</div>
-        <span class="footer-link">Fiche Google Business</span>
-        <span class="footer-link">Site Internet BTP</span>
-        <span class="footer-link">Référencement Local</span>
-        <span class="footer-link">Publicités Meta Ads</span>
+        <span class="footer-link">Fiche Google</span>
+        <span class="footer-link">Site Web</span>
+        <span class="footer-link">Référencement</span>
+        <span class="footer-link">Publicités Méta Ads</span>
+        <span class="footer-link">Réseaux Sociaux</span>
+        <span class="footer-link">Shooting Chantiers</span>
+        <span class="footer-link">Identité visuelle</span>
+        <span class="footer-link">Branding</span>
       </div>
       <div>
         <div class="footer-col-title">Zones d'intervention</div>
@@ -2468,40 +2544,40 @@ function getExplication(pk, pan, obj) {
 
   if (pk === 'top3') {
     if (gros && ambi)
-      return 'Tu es en top 3,c\'est un bon départ. Mais avec des chantiers à ' + pLbl + ' et ' + obj + ' chantiers visés par mois, une fiche pas parfaitement optimisée te coûte plusieurs milliers d\'euros chaque mois sans que tu t\'en rendes compte.';
+      return 'Tu es dans les 3 premiers résultats quand quelqu\'un tape ton métier sur Google : c\'est une bonne position. Mais avec des chantiers à ' + pLbl + ' et un objectif de ' + obj + ' par mois, si ta fiche n\'est pas parfaitement soignée (photos, avis, description), certains clients hésitent et appellent un concurrent. Chaque hésitation te coûte cher.';
     if (gros)
-      return 'Tu es visible, mais en top 3 tu peux encore perdre des clics si ta fiche n\'est pas irréprochable. Avec des chantiers à ' + pLbl + ', chaque client qui hésite et part chez un concurrent, c\'est une grosse perte sèche.';
+      return 'Tu es dans les 3 premiers résultats sur Google : les clients te voient. Mais avec des chantiers à ' + pLbl + ', si ta fiche est moins convaincante qu\'un concurrent (moins d\'avis, moins de photos), ils vont appeler lui plutôt que toi. Et tu ne le sais même pas.';
     if (ambi)
-      return 'En top 3 avec ' + obj + ' chantiers par mois visés, le volume est là,mais une optimisation imparfaite t\'empêche de convertir chaque visite en appel. Il reste de l\'argent à récupérer.';
-    return 'Tu es en top 3, ce qui est déjà bien. Mais sans fiche optimisée, une partie des clients qui te voient partent quand même chez un concurrent mieux présenté.';
+      return 'Tu es bien positionné sur Google, les gens te trouvent. Mais pour atteindre ' + obj + ' chantiers par mois, il faut que ta fiche soit irréprochable pour que chaque visite se transforme en appel. Il reste de la marge.';
+    return 'Tu es dans le top 3 sur Google, ce qui veut dire que les clients te voient quand ils cherchent. C\'est bien. Mais si ta fiche manque d\'avis ou de photos, ils peuvent quand même choisir un concurrent qui inspire plus confiance.';
   }
 
   if (pk === 'p4a10') {
     if (gros && ambi)
-      return 'En position 4-10, plus de la moitié des clients choisissent quelqu\'un d\'autre avant même de te voir. Avec des chantiers à ' + pLbl + ' et ' + obj + ' chantiers visés par mois, chaque semaine sans action, c\'est une somme conséquente qui part chez tes concurrents.';
+      return 'Tu apparais sur Google, mais pas dans les 3 premiers. Concrètement : 85% des gens qui cherchent ton métier dans ta ville cliquent sur les 3 premiers résultats et ne descendent jamais jusqu\'à toi. Avec des chantiers à ' + pLbl + ' et ' + obj + ' chantiers visés par mois, ça représente beaucoup de clients perdus chaque semaine.';
     if (gros)
-      return 'En position 4-10, les clients te voient,mais ils ont déjà cliqué ailleurs. Avec des chantiers à ' + pLbl + ', chaque client qui t\'échappe représente une perte réelle. Et ça arrive plusieurs fois par semaine.';
+      return 'Tu apparais sur Google entre la 4ème et la 10ème place. Le problème : la plupart des gens cliquent sur les 3 premiers résultats et s\'arrêtent là. Avec des chantiers à ' + pLbl + ', chaque client qui ne te trouve pas, c\'est une perte concrète.';
     if (ambi)
-      return 'Tu vises ' + obj + ' chantiers par mois mais en position 4-10, les clients t\'arrivent au compte-gouttes. Les 3 premières positions captent 85% des clics,tout ce qui est en dessous est presque ignoré.';
-    return 'En position 4-10, tu rates plus de la moitié des recherches. Les artisans dans le top 3 de ta ville récupèrent en ce moment tes futurs clients, sans que tu puisses rien y faire.';
+      return 'Tu vises ' + obj + ' chantiers par mois, mais en dessous du top 3, la grande majorité des clients ne te voient jamais. Ils appellent les premiers de la liste, pas toi, même si tu fais un meilleur travail.';
+    return 'Tu es visible sur Google, mais pas assez haut. La réalité : quand quelqu\'un cherche un artisan dans ta ville, il appelle les 3 premiers résultats. S\'il faut scroller pour te trouver, la plupart ne le font pas.';
   }
 
   if (pk === 'p2') {
     if (gros && ambi)
-      return 'En page 2, tu n\'existes pas pour tes clients. Avec des chantiers à ' + pLbl + ' et un objectif de ' + obj + ' par mois, l\'écart entre ce que tu gagnes aujourd\'hui et ce que tu pourrais gagner est considérable, et il se creuse chaque semaine.';
+      return 'Être en page 2 sur Google, c\'est comme avoir une boutique dans une rue où personne ne passe. Moins de 1% des gens vont en page 2 quand ils cherchent quelque chose. Avec des chantiers à ' + pLbl + ' et ' + obj + ' chantiers visés par mois, tes clients potentiels existent, ils cherchent sur Google, mais ils ne tombent jamais sur toi.';
     if (gros)
-      return 'En page 2, moins de 5% des clients arrivent jusqu\'à toi. Avec des chantiers à ' + pLbl + ', tu laisses des concurrents peut-être moins bons que toi prendre les meilleurs chantiers de ta zone.';
+      return 'La page 2 de Google, c\'est là où personne ne va. Quand un client cherche ton métier dans ta ville, il appelle quelqu\'un en page 1, pas toi. Avec des chantiers à ' + pLbl + ', des concurrents moins bons que toi signent probablement des chantiers qui auraient pu être les tiens.';
     if (ambi)
-      return 'Tu vises ' + obj + ' chantiers par mois mais en page 2, tes clients existent,ils ne te trouvent simplement pas. Les artisans BTP qui remontent en page 1 voient leur activité changer radicalement en quelques semaines.';
-    return 'En page 2, tu es quasiment invisible. La bonne nouvelle : ce n\'est pas une fatalité. En quelques semaines d\'optimisation, ta fiche peut remonter et changer ton activité.';
+      return 'Tu vises ' + obj + ' chantiers par mois, mais en page 2, tes clients ne te trouvent pas. Ce n\'est pas qu\'ils ne cherchent pas, c\'est que Google ne te montre pas assez haut. Remonter en page 1 change tout.';
+    return 'La page 2 de Google, personne n\'y va. Les gens cherchent, trouvent quelqu\'un en page 1 et l\'appellent directement. Tant que tu restes en page 2, tu n\'existes pas pour eux, même si tu fais un excellent travail.';
   }
 
   // inv
   if (gros && ambi)
-    return 'Si tu ne sais pas où tu apparais sur Google, c\'est souvent mauvais signe. Avec des chantiers à ' + pLbl + ' et ' + obj + ' chantiers visés par mois, c\'est probablement le levier le plus sous-exploité de ton activité en ce moment.';
+    return 'Si tu ne sais pas où tu apparais sur Google, c\'est que tu n\'as probablement jamais regardé, et ça veut souvent dire que ta visibilité est faible. Avec des chantiers à ' + pLbl + ' et ' + obj + ' chantiers visés par mois, c\'est le premier truc à régler : savoir exactement où tu en es pour pouvoir avancer.';
   if (gros)
-    return 'Ne pas connaître ta position, c\'est un signal clair : tu n\'as probablement pas de stratégie de visibilité. Avec des chantiers à ' + pLbl + ', quelques semaines d\'invisibilité représentent un manque à gagner réel.';
-  return 'Ne pas savoir où tu apparais sur Google, c\'est conduire sans tableau de bord. Tes concurrents qui sont visibles captent en ce moment tes futurs clients, et ça se passe chaque jour.';
+    return 'Ne pas savoir où tu apparais sur Google, c\'est normal si tu n\'as jamais creusé le sujet. Mais avec des chantiers à ' + pLbl + ', ça vaut le coup de le vérifier : beaucoup d\'artisans découvrent qu\'ils sont quasi-invisibles et que ça leur coûte des milliers d\'euros chaque mois sans le savoir.';
+  return 'Ne pas connaître sa position sur Google, c\'est fréquent. Mais concrètement : si tu n\'es pas dans les 3 premiers résultats quand quelqu\'un cherche ton métier dans ta ville, il y a de grandes chances qu\'il appelle un concurrent. Le diagnostic permet de savoir exactement où tu en es.';
 }
 
 function calculate() {
@@ -2560,7 +2636,7 @@ function startCountdown() {
   }
   requestAnimationFrame(step);
 }
-setTimeout(startCountdown, 3000);
+setTimeout(startCountdown, 2000);
 
 /* ── Compteurs animés stats ─────────────── */
 function animateStat(el) {
@@ -2600,7 +2676,7 @@ document.querySelectorAll('.reveal, .rv-l, .rv-r').forEach(el => ro.observe(el))
   if (!section) return;
   const clipRect = document.getElementById('tapeRevealRect');
   const steps    = section.querySelectorAll('.diag-step-item.diag-anim');
-  const totalW   = 1210;
+  const totalW   = 1082;
   const dur      = 2600; // ms
   const delays   = [200, 800, 1500, 2200]; // quand chaque carte apparaît
 
