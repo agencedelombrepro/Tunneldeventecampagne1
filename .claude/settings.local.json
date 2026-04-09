@@ -6,7 +6,8 @@
       "Bash(npx serve:*)",
       "Bash(echo \"PID: $!\")",
       "Bash(open \"http://localhost:54336/landing_campagne1_btp.html\")",
-      "Bash(lsof -ti:3000)"
+      "Bash(lsof -ti:3000)",
+      "Bash(xargs kill:*)"
     ]
   }
 }
