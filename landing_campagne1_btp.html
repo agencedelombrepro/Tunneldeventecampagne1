@@ -1988,7 +1988,7 @@ footer {
     <div class="rv-l reveal">
       <div class="section-tag">Le Diagnostic de Visibilité</div>
       <h2 class="section-title">30 minutes pendant lesquelles on passe en revue <em>tout ce qui bloque</em></h2>
-      <p class="section-sub">Un audit complet de ta présence en ligne, réalisé par un expert en référencement local spécialisé dans le BTP. On connaît ton secteur d'activité, tes concurrents dans ta région, et les recherches que font tes clients potentiels. En 30 minutes, tu repars avec une vision claire de ce qui te rend invisible sur Google, et un plan d'action concret pour y remédier.</p>
+      <p class="section-sub" style="max-width:100%;">Un audit complet de ta présence en ligne, réalisé par un expert en référencement local spécialisé dans le BTP. On connaît ton secteur d'activité, tes concurrents dans ta région, et les recherches que font tes clients potentiels. En 30 minutes, tu repars avec une vision claire de ce qui te rend invisible sur Google, et un plan d'action concret pour y remédier.</p>
     </div>
   </div><!-- /.wrap fermé ici pour que le ruban soit pleine largeur -->
 
@@ -2505,7 +2505,7 @@ function getExplication(pk, pan, obj) {
     if (gros && ambi)
       return 'Tu es dans les 3 premiers résultats quand quelqu\'un tape ton métier sur Google : c\'est une bonne position. Mais avec des chantiers à ' + pLbl + ' et un objectif de ' + obj + ' par mois, si ta fiche n\'est pas parfaitement soignée (photos, avis, description), certains clients hésitent et appellent un concurrent. Chaque hésitation te coûte cher.';
     if (gros)
-      return 'Tu es dans les 3 premiers résultats sur Google : les clients te voient. Mais avec des chantiers à ' + pLbl + ', si ta fiche est moins convaincante qu\'un concurrent (moins d\'avis, moins de photos), ils vont appeler lui plutôt que toi. Et tu ne le sais même pas.';
+      return 'Tu es dans les 3 premiers résultats sur Google : les clients te voient. Mais avec des chantiers à ' + pLbl + ', si ta fiche est moins convaincante qu\'un concurrent (moins d\'avis, moins de photos), ils vont l\'appeler LUI plutôt que TOI. Et tu ne le sais même pas.';
     if (ambi)
       return 'Tu es bien positionné sur Google, les gens te trouvent. Mais pour atteindre ' + obj + ' chantiers par mois, il faut que ta fiche soit irréprochable pour que chaque visite se transforme en appel. Il reste de la marge.';
     return 'Tu es dans le top 3 sur Google, ce qui veut dire que les clients te voient quand ils cherchent. C\'est bien. Mais si ta fiche manque d\'avis ou de photos, ils peuvent quand même choisir un concurrent qui inspire plus confiance.';
@@ -2517,18 +2517,18 @@ function getExplication(pk, pan, obj) {
     if (gros)
       return 'Tu apparais sur Google entre la 4ème et la 10ème place. Le problème : la plupart des gens cliquent sur les 3 premiers résultats et s\'arrêtent là. Avec des chantiers à ' + pLbl + ', chaque client qui ne te trouve pas, c\'est une perte concrète.';
     if (ambi)
-      return 'Tu vises ' + obj + ' chantiers par mois, mais en dessous du top 3, la grande majorité des clients ne te voient jamais. Ils appellent les premiers de la liste, pas toi, même si tu fais un meilleur travail.';
+      return 'Tu vises ' + obj + ' chantiers par mois, mais si tu n\'apparais pas dans les 3 premiers résultats sur Google, la grande majorité des clients ne te voient jamais. Ils appellent les premiers de la liste, pas toi, même si tu fais un meilleur travail.';
     return 'Tu es visible sur Google, mais pas assez haut. La réalité : quand quelqu\'un cherche un artisan dans ta ville, il appelle les 3 premiers résultats. S\'il faut scroller pour te trouver, la plupart ne le font pas.';
   }
 
   if (pk === 'p2') {
     if (gros && ambi)
-      return 'Être en page 2 sur Google, c\'est comme avoir une boutique dans une rue où personne ne passe. Moins de 1% des gens vont en page 2 quand ils cherchent quelque chose. Avec des chantiers à ' + pLbl + ' et ' + obj + ' chantiers visés par mois, tes clients potentiels existent, ils cherchent sur Google, mais ils ne tombent jamais sur toi.';
+      return 'Apparaître en 2ème page sur Google, c\'est comme avoir une boutique dans une rue où personne ne passe. Moins de 1% des gens regardent en page 2 quand ils cherchent quelque chose. Avec des chantiers à ' + pLbl + ' et ' + obj + ' chantiers visés par mois, tes clients potentiels existent, ils cherchent sur Google, mais ils ne tombent jamais sur toi.';
     if (gros)
-      return 'La page 2 de Google, c\'est là où personne ne va. Quand un client cherche ton métier dans ta ville, il appelle quelqu\'un en page 1, pas toi. Avec des chantiers à ' + pLbl + ', des concurrents moins bons que toi signent probablement des chantiers qui auraient pu être les tiens.';
+      return 'La 2ème page de recherche sur Google, c\'est là où personne ne va. Quand un client cherche ton métier dans ta ville, il appelle quelqu\'un qui ressort en première page, pas toi. Avec des chantiers à ' + pLbl + ', des concurrents moins bons que toi signent probablement des chantiers qui auraient pu être les tiens.';
     if (ambi)
-      return 'Tu vises ' + obj + ' chantiers par mois, mais en page 2, tes clients ne te trouvent pas. Ce n\'est pas qu\'ils ne cherchent pas, c\'est que Google ne te montre pas assez haut. Remonter en page 1 change tout.';
-    return 'La page 2 de Google, personne n\'y va. Les gens cherchent, trouvent quelqu\'un en page 1 et l\'appellent directement. Tant que tu restes en page 2, tu n\'existes pas pour eux, même si tu fais un excellent travail.';
+      return 'Tu vises ' + obj + ' chantiers par mois, mais si tu apparais en 2e page de recherche sur Google, tes clients ne te trouvent pas. Ce n\'est pas qu\'ils ne cherchent pas, c\'est que Google ne te montre pas assez haut. Remonter en 1ère page change tout.';
+    return 'La 2ème page de recherche sur Google, personne n\'y va. Les gens cherchent, trouvent quelqu\'un en page 1 et l\'appellent directement. Tant que tu n\'apparais qu\'en 2ème page, tu n\'existes pas pour eux, même si tu fais un excellent travail.';
   }
 
   // inv
