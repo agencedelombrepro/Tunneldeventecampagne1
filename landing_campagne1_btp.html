@@ -1018,108 +1018,95 @@ h2.section-title em { color:var(--orange); font-style:normal; }
 /* ═══════════════════════════════════════════
    DIAGNOSTIC,4 cartes
 ═══════════════════════════════════════════ */
-/* ── RUBALISE CHANTIER DIAGNOSTIC ────────── */
-.diag-wave-section {
+/* ── FRISE CHRONOLOGIQUE DIAGNOSTIC ────────── */
+.diag-timeline {
   position: relative;
-  width: 100%;
-  margin-top: 3rem;
-  padding-bottom: 2rem;
-  overflow: hidden;
+  margin-top: 3.5rem;
+  padding-bottom: 1rem;
 }
-.diag-wave-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(239,127,21,.06) 0%, transparent 70%);
-  pointer-events: none;
+.diag-tl-track {
+  position: relative;
 }
-.diag-wave-svg {
+.diag-tl-line {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
+  top: 68px;
+  left: calc(12.5% + 1.5rem);
+  right: calc(12.5% + 1.5rem);
+  height: 4px;
+  background: linear-gradient(90deg, #F5A84A 0%, #7D3F05 100%);
+  border-radius: 2px;
   z-index: 0;
-  overflow: visible;
 }
-/* Cartes initialement cachées */
-.diag-step-item.diag-anim {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .45s ease, transform .45s ease;
-}
-.diag-step-item.diag-anim.diag-show {
-  opacity: 1;
-  transform: translateY(0);
-}
-.diag-steps-row {
+.diag-tl-steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   position: relative;
   z-index: 1;
-  align-items: end;
-  padding: 0 2.5%;
-  min-height: 260px;
 }
-.diag-step-item {
+.diag-tl-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .75rem;
+  gap: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .4s ease, transform .4s ease;
 }
-.diag-step-item:nth-child(odd)  { padding-bottom: 130px; }
-.diag-step-item:nth-child(even) { padding-top:    130px; }
-
-.diag-step-bubble {
-  width: 60px; height: 60px;
+.diag-tl-step.tl-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.diag-tl-cone {
+  width: 52px;
+  filter: drop-shadow(0 5px 10px rgba(239,127,21,.35));
+  transition: transform .25s ease;
+}
+.diag-tl-step:hover .diag-tl-cone { transform: translateY(-5px); }
+.diag-tl-dot {
+  width: 30px; height: 30px;
   border-radius: 50%;
-  display: flex; align-items:center; justify-content:center;
-  font-size: 20px; font-weight: 900; color: #fff;
-  box-shadow: 0 6px 24px rgba(239,127,21,.45);
-  flex-shrink: 0;
-  transition: transform .25s, box-shadow .25s;
+  background: var(--orange);
+  color: #fff;
+  font-size: 13px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 4px #fff, 0 4px 12px rgba(239,127,21,.35);
+  margin: 10px 0 14px;
+  position: relative; z-index: 2;
 }
-.diag-step-item:hover .diag-step-bubble {
-  transform: scale(1.1);
-  box-shadow: 0 10px 32px rgba(239,127,21,.6);
-}
-.diag-step-item:nth-child(1) .diag-step-bubble { background: linear-gradient(135deg,#F5A84A,#EF7F15); }
-.diag-step-item:nth-child(2) .diag-step-bubble { background: linear-gradient(135deg,#EF7F15,#D4700D); }
-.diag-step-item:nth-child(3) .diag-step-bubble { background: linear-gradient(135deg,#D4700D,#B85E0A); }
-.diag-step-item:nth-child(4) .diag-step-bubble { background: linear-gradient(135deg,#B85E0A,#7D3F05); }
-
-.diag-step-card {
+.diag-tl-card {
   background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--r);
   padding: 1.25rem;
   text-align: center;
   box-shadow: var(--sh);
-  transition: transform .25s, box-shadow .25s;
   width: 100%;
+  transition: transform .25s, box-shadow .25s;
 }
-.diag-step-item:hover .diag-step-card {
+.diag-tl-step:hover .diag-tl-card {
   transform: translateY(-4px);
   box-shadow: var(--sh-lg);
 }
-.diag-step-label, .diag-step-tag {
+.diag-tl-tag {
   font-size: 10px; font-weight: 800;
   text-transform: uppercase; letter-spacing: 1px;
   color: var(--orange); margin-bottom: .4rem;
 }
-.diag-step-title {
+.diag-tl-title {
   font-size: 14px; font-weight: 800;
   color: var(--text); margin-bottom: .4rem;
 }
-.diag-step-desc, .diag-step-sub {
+.diag-tl-desc {
   font-size: 12px; color: var(--muted); line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-  .diag-steps-row { grid-template-columns: 1fr 1fr; }
-  .diag-step-item:nth-child(odd),
-  .diag-step-item:nth-child(even) { padding: 0; }
-  .diag-wave-svg { display: none; }
+  .diag-tl-steps { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .diag-tl-line { display: none; }
+}
+@media (max-width: 480px) {
+  .diag-tl-steps { grid-template-columns: 1fr; }
 }
 
 /* ═══════════════════════════════════════════
@@ -1136,67 +1123,79 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   gap: 5rem;
   align-items: center;
 }
-/* Barres des mois */
-.saison-months {
+/* Visuel source unique */
+.source-visual {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+}
+.source-header {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 1.75rem;
+  font-weight: 700;
+}
+.source-bars {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  margin-bottom: 1.75rem;
 }
-.saison-month-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.saison-month {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
-.saison-month::after {
-  content: '';
-  display: block;
-  height: 8px;
-  border-radius: 4px;
-  flex: 1;
-  max-width: 220px;
-}
-.saison-month.full::after    { background: var(--orange); width: 100%; }
-.saison-month.half::after    { background: rgba(239,127,21,.45); width: 55%; max-width: 120px; }
-.saison-month.empty::after   { background: rgba(255,255,255,.1); width: 25%; max-width: 55px; }
-.saison-month.full           { color: rgba(255,255,255,.85); }
-.saison-month.half           { color: rgba(255,255,255,.55); }
-
-.saison-legend {
-  display: flex;
-  gap: 1.25rem;
-  margin-top: .25rem;
-}
-.saison-leg {
-  font-size: 10px;
+.source-row { display: flex; flex-direction: column; gap: .4rem; }
+.source-name {
+  font-size: .75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .5px;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,.45);
+}
+.source-track {
+  background: rgba(255,255,255,.06);
+  border-radius: 8px;
+  height: 44px;
+  overflow: hidden;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 5px;
 }
-.saison-leg::before {
-  content: '';
-  display: inline-block;
-  width: 10px; height: 10px;
-  border-radius: 2px;
+.source-fill {
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: .85rem;
+  font-size: .82rem;
+  font-weight: 800;
+  color: #fff;
 }
-.saison-leg-full::before  { background: var(--orange); }
-.saison-leg-half::before  { background: rgba(239,127,21,.45); }
-.saison-leg-empty::before { background: rgba(255,255,255,.15); }
-.saison-leg-full  { color: rgba(255,255,255,.7); }
-.saison-leg-half  { color: rgba(255,255,255,.5); }
-.saison-leg-empty { color: rgba(255,255,255,.4); }
+.source-fill-dominant { background: var(--orange); width: 90%; }
+.source-fill-absent   { width: 0; }
+.source-absent-tag {
+  position: absolute;
+  left: 1rem;
+  font-size: .78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.22);
+  font-style: italic;
+}
+.source-risk {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  background: rgba(239,127,21,.07);
+  border: 1px solid rgba(239,127,21,.22);
+  border-radius: 10px;
+  padding: .9rem 1rem;
+  font-size: .85rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.55;
+}
+.source-risk-icon { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+.source-risk strong { color: #fff; }
 
 /* Texte droite */
 .saison-text .section-tag { color: var(--orange); }
@@ -1232,6 +1231,8 @@ h2.section-title em { color:var(--orange); font-style:normal; }
 @media (max-width: 768px) {
   .saison-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .saison-sub { max-width: 100%; }
+  .source-visual { padding: 1.25rem; order: 1; }
+  .saison-text { order: -1; }
 }
 
 /* ═══════════════════════════════════════════
@@ -1768,7 +1769,7 @@ footer {
   .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
   .hero-left h1 { font-size: 30px; letter-spacing:-.8px; }
   .hero-left p  { font-size: 15px; }
-  .hero-right   { order: -1; }
+  .hero-right   { order: 1; }
   .gmaps-body   { height: 240px; }
   .gmaps-tabs   { display: none; }
 
@@ -1803,6 +1804,287 @@ footer {
   .diag-grid { grid-template-columns: 1fr; }
   .hero-cta-row { flex-direction:column; align-items:flex-start; }
   .btn-primary { width:100%; text-align:center; }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION OFFRE
+═══════════════════════════════════════════ */
+.offre-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.offre-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--sh);
+  position: relative;
+  transition: transform .25s, box-shadow .25s;
+}
+.offre-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sh-lg);
+}
+.offre-card-featured {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(239,127,21,.1), var(--sh-lg);
+}
+.offre-featured-label {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: .3rem .85rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.offre-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+.offre-delay {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--orange);
+}
+.offre-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+}
+.offre-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.offre-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+.offre-list li {
+  font-size: 13px;
+  color: var(--text);
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  line-height: 1.5;
+}
+.offre-list li::before {
+  content: '✓';
+  color: var(--orange);
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: .05em;
+}
+
+/* Process 3 étapes */
+.process-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+  background: var(--surface, #f8f8f6);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.75rem 2.5rem;
+  flex-wrap: wrap;
+}
+.process-step {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+}
+.process-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(239,127,21,.35);
+}
+.process-txt {
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.process-txt strong { display: block; color: var(--text); }
+.process-arrow {
+  font-size: 1.25rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+/* Badge service sur les témoignages */
+.temo-service {
+  display: inline-block;
+  background: rgba(239,127,21,.1);
+  border: 1px solid rgba(239,127,21,.25);
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  padding: .25rem .65rem;
+  border-radius: 20px;
+  margin-bottom: .6rem;
+}
+
+/* CTA process steps */
+.cta-process {
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+.cta-process-step {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  font-size: 13.5px;
+  color: rgba(255,255,255,.75);
+  line-height: 1.5;
+}
+.cta-process-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+.cta-process-step strong { color: #fff; }
+
+/* Pont calculateur → CTA */
+.result-bridge {
+  background: rgba(239,127,21,.12);
+  border: 1px solid rgba(239,127,21,.4);
+  border-radius: 10px;
+  padding: .85rem 1.1rem;
+  font-size: 13.5px;
+  color: rgba(255,255,255,.85);
+  line-height: 1.6;
+  margin-bottom: .85rem;
+}
+.result-bridge strong { color: var(--orange); font-weight: 700; }
+.result-bridge em { font-style: italic; color: rgba(255,255,255,.7); }
+
+/* Garantie résultats */
+.garantie-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: #fff;
+  border: 2px solid var(--orange);
+  border-radius: var(--r);
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 24px rgba(239,127,21,.12);
+}
+.garantie-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.garantie-body {}
+.garantie-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: .35rem;
+}
+.garantie-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.garantie-desc strong { color: var(--text); }
+
+/* FAQ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: 2.5rem;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+.faq-item:hover { box-shadow: var(--sh); }
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 1.1rem 1.25rem;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-family: inherit;
+}
+.faq-q:hover { background: rgba(0,0,0,.02); }
+.faq-chevron {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  transition: transform .25s;
+}
+.faq-item.open .faq-chevron { transform: rotate(45deg); }
+.faq-a {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.75;
+  padding: 0 1.25rem 1.1rem;
+  display: none;
+}
+.faq-a strong { color: var(--text); }
+.faq-item.open .faq-a { display: block; }
+
+@media (max-width: 768px) {
+  .offre-grid { grid-template-columns: 1fr; }
+  .process-strip { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .process-arrow { transform: rotate(90deg); align-self: center; }
+  .garantie-strip { flex-direction: column; gap: .75rem; }
 }
 </style>
 </head>
@@ -2042,38 +2324,39 @@ footer {
   <div class="wrap">
     <div class="saison-grid">
 
-      <!-- Colonne gauche : mois -->
-      <div class="saison-months reveal">
-        <div class="saison-month-row">
-          <div class="saison-month full">Avr</div>
-          <div class="saison-month full">Mai</div>
-          <div class="saison-month full">Juin</div>
-          <div class="saison-month full">Juil</div>
-          <div class="saison-month full">Août</div>
-          <div class="saison-month full">Sep</div>
-          <div class="saison-month full">Oct</div>
-          <div class="saison-month half">Nov</div>
-          <div class="saison-month empty">Déc</div>
-          <div class="saison-month empty">Jan</div>
-          <div class="saison-month empty">Fév</div>
-          <div class="saison-month half">Mar</div>
+      <!-- Colonne gauche : sources -->
+      <div class="source-visual reveal">
+        <div class="source-header">D'où viennent tes chantiers ?</div>
+        <div class="source-bars">
+          <div class="source-row">
+            <div class="source-name">Bouche-à-oreille</div>
+            <div class="source-track">
+              <div class="source-fill source-fill-dominant">~90 %</div>
+            </div>
+          </div>
+          <div class="source-row">
+            <div class="source-name">Google / Internet</div>
+            <div class="source-track">
+              <div class="source-fill source-fill-absent"></div>
+              <span class="source-absent-tag">absent — tu n'existes pas en ligne</span>
+            </div>
+          </div>
         </div>
-        <div class="saison-legend">
-          <span class="saison-leg saison-leg-full">Plein</span>
-          <span class="saison-leg saison-leg-half">Variable</span>
-          <span class="saison-leg saison-leg-empty">Creux</span>
+        <div class="source-risk">
+          <span class="source-risk-icon">⚠️</span>
+          <span><strong>1 seule source = 1 seul point de rupture.</strong> Quand tes clients s'arrêtent de parler, il n'y a rien d'autre.</span>
         </div>
       </div>
 
       <!-- Colonne droite : texte -->
       <div class="saison-text rv-r reveal">
         <div class="section-tag">Le problème caché</div>
-        <h2 class="section-title">En octobre, tu es <em>plein.</em><br>En janvier, tu <em>attends.</em></h2>
-        <p class="saison-sub">Le bouche-à-oreille remplit 3 mois. Il s'arrête quand tes clients s'arrêtent de parler. Google, lui, travaille à 3h du matin le 2 janvier quand quelqu'un tape <strong>"plombier urgence [ta ville]"</strong>. Tu apparais, ou tu n'existes pas.</p>
+        <h2 class="section-title">Tout vient du bouche-à-oreille.<br>Sur Internet, tu es <em>invisible.</em></h2>
+        <p class="saison-sub">Le bouche-à-oreille c'est bien — jusqu'à ce que tes clients s'arrêtent de parler. Google, lui, travaille à 3h du matin le 2 janvier quand quelqu'un tape <strong>"plombier urgence [ta ville]"</strong>. Tu apparais, ou tu n'existes pas. C'est ça, le vrai problème : <strong>un seul panier, et zéro filet.</strong></p>
         <div class="saison-quote">
           <span class="saison-quote-icon">💬</span>
           <em>"Je n'ai pas besoin de pub, mes clients me recommandent."</em><br>
-          <span class="saison-quote-rep">→ C'est vrai en juillet. C'est faux en janvier.</span>
+          <span class="saison-quote-rep">→ Jusqu'au jour où ils s'arrêtent. Et tu n'as aucun autre canal.</span>
         </div>
       </div>
 
@@ -2111,8 +2394,8 @@ footer {
       <div class="stat-icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 5.5A8 8 0 1 0 17 18.5"/><line x1="3" y1="10" x2="14" y2="10"/><line x1="3" y1="14" x2="14" y2="14"/></svg>
       </div>
-      <div class="stat-num" id="stat-countdown">79 €</div>
-      <div class="stat-lbl">Coût du diagnostic visibilité</div>
+      <div class="stat-num" id="stat-countdown">Gratuit</div>
+      <div class="stat-lbl">Diagnostic visibilité offert</div>
     </div>
   </div>
 </div>
@@ -2205,7 +2488,11 @@ footer {
         <div class="result-right">
           <div class="result-badge" id="perte-annee"></div>
           <div class="result-expl" id="explication"></div>
-          <button class="result-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah','_blank')">
+          <div class="result-bridge" id="result-bridge" style="display:none;">
+            Ces <strong id="bridge-amount"></strong>/mois partent chez tes concurrents.<br>
+            Le diagnostic identifie exactement <em>comment les récupérer.</em>
+          </div>
+          <button class="result-cta" id="result-cta-btn" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah','_blank')">
             Réserver mon diagnostic visibilité →
           </button>
         </div>
@@ -2225,92 +2512,170 @@ footer {
       <h2 class="section-title">30 minutes pendant lesquelles on passe en revue <em>tout ce qui bloque</em></h2>
       <p class="section-sub" style="max-width:100%;">Un audit complet de ta présence en ligne, réalisé par un expert en référencement local spécialisé dans le BTP. On connaît ton secteur d'activité, tes concurrents dans ta région, et les recherches que font tes clients potentiels. En 30 minutes, tu repars avec une vision claire de ce qui te rend invisible sur Google, et un plan d'action concret pour y remédier.</p>
     </div>
-  </div><!-- /.wrap fermé ici pour que le ruban soit pleine largeur -->
+  </div><!-- /.wrap -->
 
-  <!-- ── Rubalise chantier pleine largeur ── -->
-  <div class="diag-wave-section">
+  <!-- ── Frise cônes de chantier ── -->
+  <div class="diag-timeline">
+    <div class="wrap">
+      <div class="diag-tl-track">
+        <div class="diag-tl-line"></div>
+        <div class="diag-tl-steps">
 
-    <svg class="diag-wave-svg" viewBox="0 0 1400 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <!-- Rubalise : bandes jaune/noir à 45°, rotation autour du centre du ruban -->
-        <pattern id="rubaliseStripes" x="0" y="0" width="60" height="60"
-                 patternUnits="userSpaceOnUse" patternTransform="rotate(-45 700 130)">
-          <rect width="30" height="60" fill="#FFD025"/>
-          <rect x="30" width="30" height="60" fill="#111111"/>
-        </pattern>
-        <!-- Brillance sur la moitié supérieure du ruban -->
-        <linearGradient id="rubaliseShine" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="rgba(255,255,255,0.35)"/>
-          <stop offset="45%"  stop-color="rgba(255,255,255,0)"/>
-          <stop offset="100%" stop-color="rgba(0,0,0,0.08)"/>
-        </linearGradient>
-        <!-- Clip dévoilement gauche → droite -->
-        <clipPath id="tapeRevealClip">
-          <rect id="tapeRevealRect" x="0" y="0" width="0" height="260"/>
-        </clipPath>
-      </defs>
+          <div class="diag-tl-step">
+            <svg class="diag-tl-cone" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="24" cy="61" rx="17" ry="3.5" fill="rgba(0,0,0,0.13)"/>
+              <path d="M24,2 L44,54 L4,54 Z" fill="#EF7F15"/>
+              <path d="M9,42 L39,42 L43,52 L5,52 Z" fill="rgba(255,255,255,0.88)"/>
+              <path d="M16,24 L33,24 L36,32 L13,32 Z" fill="rgba(255,255,255,0.88)"/>
+              <path d="M22,2 L24,2 L26,9 L22,9 Z" fill="rgba(255,210,80,0.4)"/>
+              <rect x="2" y="54" width="44" height="8" rx="4" fill="#1c1c1c"/>
+            </svg>
+            <div class="diag-tl-dot">1</div>
+            <div class="diag-tl-card">
+              <div class="diag-tl-tag">Fiche Google</div>
+              <div class="diag-tl-title">Audit de ta présence locale</div>
+              <div class="diag-tl-desc">On ouvre ta fiche Google Business et on vérifie point par point ce qui te pénalise aux yeux de Google.</div>
+            </div>
+          </div>
 
-      <g clip-path="url(#tapeRevealClip)">
-        <!-- Ombre portée (chemin fermé décalé) -->
-        <path d="M0,105 L120,105 C180,105 220,45 320,45 C450,45 580,175 700,175 C820,175 940,45 1060,45 C1160,45 1280,175 1400,175
-                 L1400,225 C1280,225 1160,95 1060,95 C940,95 820,225 700,225 C580,225 450,95 320,95 C220,95 180,155 120,155 L0,155 Z"
-              fill="rgba(0,0,0,0.22)" transform="translate(0,9)"/>
-        <!-- Corps rubalise : chemin fermé rempli avec le pattern bandes -->
-        <path d="M0,105 L120,105 C180,105 220,45 320,45 C450,45 580,175 700,175 C820,175 940,45 1060,45 C1160,45 1280,175 1400,175
-                 L1400,225 C1280,225 1160,95 1060,95 C940,95 820,225 700,225 C580,225 450,95 320,95 C220,95 180,155 120,155 L0,155 Z"
-              fill="url(#rubaliseStripes)"/>
-        <!-- Reflet brillant par-dessus -->
-        <path d="M0,105 L120,105 C180,105 220,45 320,45 C450,45 580,175 700,175 C820,175 940,45 1060,45 C1160,45 1280,175 1400,175
-                 L1400,225 C1280,225 1160,95 1060,95 C940,95 820,225 700,225 C580,225 450,95 320,95 C220,95 180,155 120,155 L0,155 Z"
-              fill="url(#rubaliseShine)"/>
-        <!-- Bord supérieur -->
-        <path d="M0,105 L120,105 C180,105 220,45 320,45 C450,45 580,175 700,175 C820,175 940,45 1060,45 C1160,45 1280,175 1400,175"
-              fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="2.5" stroke-linecap="butt"/>
-        <!-- Bord inférieur -->
-        <path d="M0,155 L120,155 C180,155 220,95 320,95 C450,95 580,225 700,225 C820,225 940,95 1060,95 C1160,95 1280,225 1400,225"
-              fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="2.5" stroke-linecap="butt"/>
-      </g>
-    </svg>
+          <div class="diag-tl-step">
+            <svg class="diag-tl-cone" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="24" cy="61" rx="17" ry="3.5" fill="rgba(0,0,0,0.13)"/>
+              <path d="M24,2 L44,54 L4,54 Z" fill="#EF7F15"/>
+              <path d="M9,42 L39,42 L43,52 L5,52 Z" fill="rgba(255,255,255,0.88)"/>
+              <path d="M16,24 L33,24 L36,32 L13,32 Z" fill="rgba(255,255,255,0.88)"/>
+              <path d="M22,2 L24,2 L26,9 L22,9 Z" fill="rgba(255,210,80,0.4)"/>
+              <rect x="2" y="54" width="44" height="8" rx="4" fill="#1c1c1c"/>
+            </svg>
+            <div class="diag-tl-dot">2</div>
+            <div class="diag-tl-card">
+              <div class="diag-tl-tag">Site internet</div>
+              <div class="diag-tl-title">Analyse de ton site</div>
+              <div class="diag-tl-desc">On teste ton site en direct : est-ce qu'il convertit un visiteur en appel, ou est-ce qu'il le fait fuir ?</div>
+            </div>
+          </div>
 
-    <!-- Cartes étapes par-dessus le ruban -->
-    <div class="diag-steps-row">
-      <div class="diag-step-item diag-anim">
-        <div class="diag-step-bubble">1</div>
-        <div class="diag-step-card">
-          <div class="diag-step-tag">Fiche Google</div>
-          <div class="diag-step-title">Audit de ta présence locale</div>
-          <div class="diag-step-sub">On ouvre ta fiche Google Business et on vérifie point par point ce qui te pénalise aux yeux de Google.</div>
-        </div>
+          <div class="diag-tl-step">
+            <svg class="diag-tl-cone" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="24" cy="61" rx="17" ry="3.5" fill="rgba(0,0,0,0.13)"/>
+              <path d="M24,2 L44,54 L4,54 Z" fill="#EF7F15"/>
+              <path d="M9,42 L39,42 L43,52 L5,52 Z" fill="rgba(255,255,255,0.88)"/>
+              <path d="M16,24 L33,24 L36,32 L13,32 Z" fill="rgba(255,255,255,0.88)"/>
+              <path d="M22,2 L24,2 L26,9 L22,9 Z" fill="rgba(255,210,80,0.4)"/>
+              <rect x="2" y="54" width="44" height="8" rx="4" fill="#1c1c1c"/>
+            </svg>
+            <div class="diag-tl-dot">3</div>
+            <div class="diag-tl-card">
+              <div class="diag-tl-tag">Concurrents</div>
+              <div class="diag-tl-title">Scan de tes concurrents</div>
+              <div class="diag-tl-desc">On décortique ensemble qui apparaît avant toi dans ta ville, et pourquoi Google les préfère.</div>
+            </div>
+          </div>
+
+          <div class="diag-tl-step">
+            <svg class="diag-tl-cone" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="24" cy="61" rx="17" ry="3.5" fill="rgba(0,0,0,0.13)"/>
+              <path d="M24,2 L44,54 L4,54 Z" fill="#EF7F15"/>
+              <path d="M9,42 L39,42 L43,52 L5,52 Z" fill="rgba(255,255,255,0.88)"/>
+              <path d="M16,24 L33,24 L36,32 L13,32 Z" fill="rgba(255,255,255,0.88)"/>
+              <path d="M22,2 L24,2 L26,9 L22,9 Z" fill="rgba(255,210,80,0.4)"/>
+              <rect x="2" y="54" width="44" height="8" rx="4" fill="#1c1c1c"/>
+            </svg>
+            <div class="diag-tl-dot">4</div>
+            <div class="diag-tl-card">
+              <div class="diag-tl-tag">Plan d'action</div>
+              <div class="diag-tl-title">Feuille de route personnalisée</div>
+              <div class="diag-tl-desc">Tu repars avec les 3 actions prioritaires pour que tes clients te trouvent avant tes concurrents.</div>
+            </div>
+          </div>
+
+        </div><!-- /.diag-tl-steps -->
+      </div><!-- /.diag-tl-track -->
+    </div><!-- /.wrap -->
+  </div><!-- /.diag-timeline -->
+</section>
+
+<!-- ══════════════════════════════════════
+     OFFRE — CE QU'ON CONSTRUIT
+══════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="rv-l reveal">
+      <div class="section-tag">Ce qu'on construit ensemble</div>
+      <h2 class="section-title">Un site qui travaille pour toi <em>24h/24.</em><br>Même quand tu es sur le chantier.</h2>
+      <p class="section-sub" style="max-width:620px;">Pas une vitrine. Une machine à générer des appels. On livre un ensemble cohérent — site, fiche Google, SEO local — pensé pour ton corps de métier et ta zone.</p>
+    </div>
+
+    <div class="offre-grid">
+
+      <div class="offre-card reveal d1">
+        <div class="offre-icon">🌐</div>
+        <div class="offre-delay">Livré en 30 jours</div>
+        <div class="offre-title">Site web optimisé SEO local</div>
+        <div class="offre-desc">Conçu pour que le visiteur qui cherche ton métier dans ta ville devienne un appel. Chaque page cible une requête réelle de tes clients.</div>
+        <ul class="offre-list">
+          <li>Design professionnel adapté BTP</li>
+          <li>Pages "métier + ville" optimisées</li>
+          <li>Bouton d'appel direct prominent</li>
+          <li>100% adapté mobile</li>
+        </ul>
       </div>
-      <div class="diag-step-item diag-anim">
-        <div class="diag-step-bubble">2</div>
-        <div class="diag-step-card">
-          <div class="diag-step-tag">Site internet</div>
-          <div class="diag-step-title">Analyse de ton site</div>
-          <div class="diag-step-sub">On teste ton site en direct : est-ce qu'il convertit un visiteur en appel, ou est-ce qu'il le fait fuir ?</div>
-        </div>
+
+      <div class="offre-card offre-card-featured reveal d2">
+        <div class="offre-featured-label">Le plus rentable</div>
+        <div class="offre-icon">📍</div>
+        <div class="offre-delay">Résultats en 30–60 jours</div>
+        <div class="offre-title">Fiche Google Business optimisée</div>
+        <div class="offre-desc">70% des artisans sont choisis directement depuis Google Maps. On te positionne dans le "pack 3" local pour ta ville et ton métier.</div>
+        <ul class="offre-list">
+          <li>Audit et optimisation complète</li>
+          <li>Photos chantiers professionnelles</li>
+          <li>Stratégie avis clients</li>
+          <li>Publications régulières</li>
+        </ul>
       </div>
-      <div class="diag-step-item diag-anim">
-        <div class="diag-step-bubble">3</div>
-        <div class="diag-step-card">
-          <div class="diag-step-tag">Concurrents</div>
-          <div class="diag-step-title">Scan de tes concurrents</div>
-          <div class="diag-step-sub">On décortique ensemble qui apparaît avant toi dans ta ville, et pourquoi Google les préfère.</div>
-        </div>
+
+      <div class="offre-card reveal d3">
+        <div class="offre-icon">📈</div>
+        <div class="offre-delay">Résultats durables dans le temps</div>
+        <div class="offre-title">Référencement local continu</div>
+        <div class="offre-desc">Le SEO n'est pas un coup de peinture. Chaque mois on travaille pour que tu montes et restes en haut de Google dans ta zone, devant tes concurrents.</div>
+        <ul class="offre-list">
+          <li>Rapport mensuel de positionnement</li>
+          <li>Optimisation des mots-clés locaux</li>
+          <li>Création de contenu ciblé</li>
+          <li>Veille et ajustements concurrentiels</li>
+        </ul>
       </div>
-      <div class="diag-step-item diag-anim">
-        <div class="diag-step-bubble">4</div>
-        <div class="diag-step-card">
-          <div class="diag-step-tag">Plan d'action</div>
-          <div class="diag-step-title">Feuille de route personnalisée</div>
-          <div class="diag-step-sub">Tu repars avec les 3 actions prioritaires pour que tes clients te trouvent avant tes concurrents.</div>
-        </div>
+
+    </div>
+
+    <div class="process-strip reveal">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <div class="process-txt"><strong>Diagnostic · 30 min</strong>On identifie tes leviers réels</div>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <div class="process-txt"><strong>Plan d'action</strong>On te présente ce qu'on va faire</div>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <div class="process-txt"><strong>On démarre</strong>Site en ligne en 30 jours</div>
       </div>
     </div>
 
-  </div><!-- /.diag-wave-section -->
+    <div class="garantie-strip reveal">
+      <div class="garantie-icon">🔒</div>
+      <div class="garantie-body">
+        <div class="garantie-title">Notre engagement : on continue jusqu'à que ça marche.</div>
+        <div class="garantie-desc">On ne livre pas un site et on disparaît. On suit ton positionnement chaque mois, on ajuste, on optimise. <strong>On s'arrête quand tes chantiers rentrent, pas avant.</strong> C'est comme ça qu'on travaille avec chacun de nos artisans.</div>
+      </div>
+    </div>
 
-  <div class="wrap-dummy"></div><!-- balanceur pour fermer la section -->
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -2329,6 +2694,7 @@ footer {
 
           <!-- Avis 1 -->
           <div class="carousel-slide active">
+            <div class="temo-service">Site web + SEO + Fiche Google + Shooting</div>
             <div class="temo-stars">★★★★★</div>
             <div class="temo-date">Avis Google · Novembre 2025</div>
             <div class="temo-text">"Nous avons fait appel à l'Agence de l'Ombre pour moderniser complètement notre présence en ligne, et nous sommes très satisfaits du résultat. Notre ancien site internet datait et avait besoin d'un vrai travail de refonte. L'équipe a su créer un site moderne, clair et parfaitement adapté à notre activité dans le BTP. Ils se sont également occupés du référencement, de l'optimisation de notre fiche Google, ainsi que d'un shooting photo professionnel sur nos chantiers. Le rendu est très qualitatif et reflète parfaitement le sérieux de notre entreprise. Une équipe sérieuse, réactive et compétente que nous recommandons sans hésiter !"</div>
@@ -2343,6 +2709,7 @@ footer {
 
           <!-- Avis 2 -->
           <div class="carousel-slide">
+            <div class="temo-service">Site web + Référencement + Réseaux sociaux</div>
             <div class="temo-stars">★★★★★</div>
             <div class="temo-date">Avis Google · Décembre 2025</div>
             <div class="temo-text">"Très très bonne expérience. Équipe réactive, efficace et vraiment pro. Site internet, référencement et réseaux bien gérés, on voit de suite la différence ! Je recommande vivement aux artisans qui veulent plus de visibilité."</div>
@@ -2357,6 +2724,7 @@ footer {
 
           <!-- Avis 3 -->
           <div class="carousel-slide">
+            <div class="temo-service">Site web · Livré en quelques semaines</div>
             <div class="temo-stars">★★★★★</div>
             <div class="temo-date">Avis Google · Mars 2026</div>
             <div class="temo-text">"Super expérience avec l'Agence de l'Ombre ! L'équipe m'a fourni un site web pro qui répondait à mes attentes et reflétait mon travail en quelques semaines. Équipe experte et support nickel. Je vous les recommande vivement ! Merci à vous pour votre travail."</div>
@@ -2371,6 +2739,7 @@ footer {
 
           <!-- Avis 4 -->
           <div class="carousel-slide">
+            <div class="temo-service">Accompagnement complet</div>
             <div class="temo-stars">★★★★★</div>
             <div class="temo-date">Avis Google</div>
             <div class="temo-text">"Très content du professionnalisme de l'équipe, jeune et dynamique. Je vous les recommande."</div>
@@ -2525,6 +2894,61 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════
+     FAQ
+══════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="rv-l reveal">
+      <div class="section-tag">Questions fréquentes</div>
+      <h2 class="section-title">Ce que les artisans nous demandent <em>avant de réserver</em></h2>
+    </div>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Vous travaillez dans toute la France ?
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a">Oui, on est 100% à distance. On accompagne des artisans BTP partout en France — de Paris à Marseille, en passant par Lyon, Bordeaux, Nantes ou Toulouse. La zone géographique ne change rien à notre méthode : on connaît les recherches locales de tes clients et on cible ta ville précisément.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Combien de temps avant de voir des résultats sur Google ?
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a"><strong>Fiche Google Business :</strong> les premières améliorations se voient en 30 à 60 jours. <strong>SEO local :</strong> un positionnement solide se construit sur 3 à 6 mois. C'est pour ça qu'on reste avec toi dans la durée — on ne te lâche pas au bout d'un mois.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quelle différence avec une agence web classique ?
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a">Une agence généraliste te fait un joli site. Nous, on fait un site qui <strong>génère des appels</strong> pour un plombier, un électricien ou un carreleur. On connaît les mots que tapent tes clients, les concurrents qui dominent ta zone, et les arguments qui font décrocher le téléphone dans le BTP. C'est notre seul métier.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Et si je n'ai pas encore de site internet ?
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a">C'est exactement pour ça qu'on est là. On construit tout depuis zéro : logo, site, fiche Google, référencement. Tu n'as besoin de rien avoir en amont — juste de vouloir que tes clients te trouvent.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Est-ce que je suis engagé sur une longue durée ?
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a">On t'explique tout lors du diagnostic. Ce qu'on peut dire dès maintenant : on ne croit pas aux contrats qui retiennent des clients qui ne sont pas satisfaits. Notre intérêt, c'est que tu aies des résultats — pas de te facturer pour rien.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
      CTA
 ══════════════════════════════════════ -->
 <section class="cta-section" id="cta">
@@ -2557,14 +2981,28 @@ footer {
         <p>Le Diagnostic de Visibilité identifie exactement ce qui bloque, et ce qu'il faut changer pour que tes clients te trouvent avant tes concurrents. Sans engagement, 100% personnalisé pour ton activité BTP.</p>
       </div>
       <div class="cta-right rv-r reveal">
+        <div class="cta-process">
+          <div class="cta-process-step">
+            <div class="cta-process-num">1</div>
+            <span>Tu réserves un créneau de <strong>30 minutes</strong></span>
+          </div>
+          <div class="cta-process-step">
+            <div class="cta-process-num">2</div>
+            <span>On analyse ta fiche Google, ton site et tes concurrents <strong>en direct avec toi</strong></span>
+          </div>
+          <div class="cta-process-step">
+            <div class="cta-process-num">3</div>
+            <span>Tu repars avec un plan d'action clair — <strong>qu'on travaille ensemble ou pas</strong></span>
+          </div>
+        </div>
         <button class="cta-main-btn" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah','_blank')">
           Réserver mon Diagnostic Visibilité →
         </button>
         <div class="cta-checks">
           <span class="cta-check">Sans engagement</span>
           <span class="cta-check">30 minutes</span>
-          <span class="cta-check">Sans obligation</span>
-          <span class="cta-check">Résultats concrets</span>
+          <span class="cta-check">1 artisan par zone géographique</span>
+          <span class="cta-check">Places limitées</span>
         </div>
       </div>
     </div>
@@ -2604,7 +3042,7 @@ footer {
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
-        <a href="https://site.agencedelombre.fr" target="_blank" class="footer-link">site.agencedelombre.fr</a>
+        <span class="footer-link">hello@agencedelombre.fr</span>
       </div>
       <div>
         <div class="footer-col-title">Nos services</div>
@@ -2632,7 +3070,6 @@ footer {
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2026 Agence de l'Ombre · Tous droits réservés · Ce site ne fait pas partie du site web Facebook ou de Facebook, Inc. En outre, ce site n'est pas endossé par Facebook en aucune façon. Facebook est une marque déposée de Facebook, Inc.</div>
-      <div class="footer-copy"><a href="https://site.agencedelombre.fr" target="_blank" style="color:var(--orange);text-decoration:none;">site.agencedelombre.fr</a></div>
     </div>
   </div>
 </footer>
@@ -2840,6 +3277,14 @@ function calculate() {
   animateCount(document.getElementById('perte-mois'), lost);
   document.getElementById('perte-annee').textContent = 'Soit ' + annee.toLocaleString('fr-FR') + ' € perdus sur l\'année';
   document.getElementById('explication').textContent = getExplication(posKey, panier, objectif);
+  const bridgeEl  = document.getElementById('result-bridge');
+  const bridgeAmt = document.getElementById('bridge-amount');
+  const ctaBtn    = document.getElementById('result-cta-btn');
+  if (bridgeEl && bridgeAmt) {
+    bridgeAmt.textContent = lost.toLocaleString('fr-FR') + ' €';
+    bridgeEl.style.display = 'block';
+  }
+  if (ctaBtn) ctaBtn.textContent = 'Récupérer ces ' + lost.toLocaleString('fr-FR') + ' €/mois →';
   setTimeout(() => box.scrollIntoView({ behavior:'smooth', block:'nearest' }), 200);
 }
 
@@ -2919,43 +3364,32 @@ const ro = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .rv-l, .rv-r').forEach(el => ro.observe(el));
 
-/* ── Rubalise chantier : déroule au scroll ── */
+/* ── FAQ accordéon ── */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── Frise cônes : apparition séquentielle au scroll ── */
 (function() {
-  const section  = document.querySelector('.diag-wave-section');
-  if (!section) return;
-  const clipRect = document.getElementById('tapeRevealRect');
-  const steps    = section.querySelectorAll('.diag-step-item.diag-anim');
-  const totalW   = 1400;
-  const dur      = 2600;
-  const delays   = [200, 800, 1500, 2200];
-
-  function easeInOut(t) {
-    return t < .5 ? 2*t*t : -1+(4-2*t)*t;
-  }
-
-  function runTape() {
-    const start = performance.now();
-    delays.forEach(function(d, i) {
-      setTimeout(function() { steps[i].classList.add('diag-show'); }, d);
-    });
-    function frame(now) {
-      const t = Math.min((now - start) / dur, 1);
-      const w = Math.round(easeInOut(t) * totalW);
-      clipRect.setAttribute('width', w);
-      if (t < 1) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  }
+  const timeline = document.querySelector('.diag-timeline');
+  if (!timeline) return;
+  const steps = timeline.querySelectorAll('.diag-tl-step');
+  const delays = [0, 180, 360, 540];
 
   const obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting) {
-        runTape();
+        steps.forEach(function(s, i) {
+          setTimeout(function() { s.classList.add('tl-show'); }, delays[i]);
+        });
         obs.disconnect();
       }
     });
   }, { threshold: 0.2 });
-  obs.observe(section);
+  obs.observe(timeline);
 })();
 
 /* ── Live visitor counter (aléatoire entre 6 et 26) ── */
