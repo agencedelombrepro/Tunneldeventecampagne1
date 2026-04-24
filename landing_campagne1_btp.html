@@ -1018,21 +1018,13 @@ h2.section-title em { color:var(--orange); font-style:normal; }
 /* ═══════════════════════════════════════════
    DIAGNOSTIC,4 cartes
 ═══════════════════════════════════════════ */
-/* ── STEPS DIAGNOSTIC ────────────────────── */
+/* ── RUBALISE CHANTIER DIAGNOSTIC ────────── */
 .diag-wave-section {
   position: relative;
   width: 100%;
   margin-top: 3rem;
   padding-bottom: 2rem;
   overflow: hidden;
-}
-.diag-wave-svg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  overflow: visible;
-  pointer-events: none;
-  z-index: 0;
 }
 .diag-wave-section::before {
   content: '';
@@ -1041,10 +1033,6 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(239,127,21,.06) 0%, transparent 70%);
   pointer-events: none;
 }
-/* Boîtier mètre ruban */
-.tape-housing { display: none; }
-
-/* Mètre ruban SVG */
 .diag-wave-svg {
   position: absolute;
   top: 0; left: 0;
@@ -1053,7 +1041,7 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   z-index: 0;
   overflow: visible;
 }
-/* Cartes initialement cachées, apparaissent au passage du ruban */
+/* Cartes initialement cachées */
 .diag-step-item.diag-anim {
   opacity: 0;
   transform: translateY(18px);
@@ -1073,7 +1061,6 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   padding: 0 2.5%;
   min-height: 260px;
 }
-/* Alternance haut/bas */
 .diag-step-item {
   display: flex;
   flex-direction: column;
@@ -1081,16 +1068,13 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   gap: .75rem;
 }
 .diag-step-item:nth-child(odd)  { padding-bottom: 130px; }
-.diag-step-item:nth-child(even) { padding-top: 130px; }
+.diag-step-item:nth-child(even) { padding-top:    130px; }
 
 .diag-step-bubble {
   width: 60px; height: 60px;
   border-radius: 50%;
-  background: var(--orange);
   display: flex; align-items:center; justify-content:center;
-  font-size: 20px;
-  font-weight: 900;
-  color: #fff;
+  font-size: 20px; font-weight: 900; color: #fff;
   box-shadow: 0 6px 24px rgba(239,127,21,.45);
   flex-shrink: 0;
   transition: transform .25s, box-shadow .25s;
@@ -1119,23 +1103,16 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   box-shadow: var(--sh-lg);
 }
 .diag-step-label, .diag-step-tag {
-  font-size: 10px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--orange);
-  margin-bottom: .4rem;
+  font-size: 10px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--orange); margin-bottom: .4rem;
 }
 .diag-step-title {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: .4rem;
+  font-size: 14px; font-weight: 800;
+  color: var(--text); margin-bottom: .4rem;
 }
 .diag-step-desc, .diag-step-sub {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
+  font-size: 12px; color: var(--muted); line-height: 1.6;
 }
 
 @media (max-width: 768px) {
@@ -1143,6 +1120,118 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   .diag-step-item:nth-child(odd),
   .diag-step-item:nth-child(even) { padding: 0; }
   .diag-wave-svg { display: none; }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION SAISONNIÈRE
+═══════════════════════════════════════════ */
+.saison-section {
+  background: var(--dark);
+  padding: 80px 0;
+  overflow: hidden;
+}
+.saison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: center;
+}
+/* Barres des mois */
+.saison-months {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.saison-month-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.saison-month {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.saison-month::after {
+  content: '';
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  flex: 1;
+  max-width: 220px;
+}
+.saison-month.full::after    { background: var(--orange); width: 100%; }
+.saison-month.half::after    { background: rgba(239,127,21,.45); width: 55%; max-width: 120px; }
+.saison-month.empty::after   { background: rgba(255,255,255,.1); width: 25%; max-width: 55px; }
+.saison-month.full           { color: rgba(255,255,255,.85); }
+.saison-month.half           { color: rgba(255,255,255,.55); }
+
+.saison-legend {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: .25rem;
+}
+.saison-leg {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.saison-leg::before {
+  content: '';
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 2px;
+}
+.saison-leg-full::before  { background: var(--orange); }
+.saison-leg-half::before  { background: rgba(239,127,21,.45); }
+.saison-leg-empty::before { background: rgba(255,255,255,.15); }
+.saison-leg-full  { color: rgba(255,255,255,.7); }
+.saison-leg-half  { color: rgba(255,255,255,.5); }
+.saison-leg-empty { color: rgba(255,255,255,.4); }
+
+/* Texte droite */
+.saison-text .section-tag { color: var(--orange); }
+.saison-text .section-title { color: #fff; margin-top: .5rem; }
+.saison-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.75;
+  margin-top: 1.25rem;
+  max-width: 520px;
+}
+.saison-sub strong { color: #fff; }
+.saison-quote {
+  margin-top: 1.75rem;
+  background: rgba(255,255,255,.05);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: 1rem 1.25rem;
+  font-size: 14px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.7;
+}
+.saison-quote em { color: rgba(255,255,255,.85); font-style: italic; }
+.saison-quote-icon { margin-right: 4px; }
+.saison-quote-rep {
+  display: block;
+  margin-top: .4rem;
+  color: var(--orange);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .saison-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .saison-sub { max-width: 100%; }
 }
 
 /* ═══════════════════════════════════════════
@@ -1412,6 +1501,31 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   position: relative;
   z-index: 1;
   position: relative;
+}
+.cta-urgence {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 99px;
+  padding: 5px 14px 5px 10px;
+  margin-bottom: 1rem;
+}
+.cta-urgence::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.3);
+  animation: pulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
 }
 .cta-left h2 {
   font-size: clamp(28px,3vw,44px);
@@ -1847,6 +1961,52 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════
+     SECTION SAISONNIÈRE
+══════════════════════════════════════ -->
+<section class="saison-section">
+  <div class="wrap">
+    <div class="saison-grid">
+
+      <!-- Colonne gauche : mois -->
+      <div class="saison-months reveal">
+        <div class="saison-month-row">
+          <div class="saison-month full">Avr</div>
+          <div class="saison-month full">Mai</div>
+          <div class="saison-month full">Juin</div>
+          <div class="saison-month full">Juil</div>
+          <div class="saison-month full">Août</div>
+          <div class="saison-month full">Sep</div>
+          <div class="saison-month full">Oct</div>
+          <div class="saison-month half">Nov</div>
+          <div class="saison-month empty">Déc</div>
+          <div class="saison-month empty">Jan</div>
+          <div class="saison-month empty">Fév</div>
+          <div class="saison-month half">Mar</div>
+        </div>
+        <div class="saison-legend">
+          <span class="saison-leg saison-leg-full">Plein</span>
+          <span class="saison-leg saison-leg-half">Variable</span>
+          <span class="saison-leg saison-leg-empty">Creux</span>
+        </div>
+      </div>
+
+      <!-- Colonne droite : texte -->
+      <div class="saison-text rv-r reveal">
+        <div class="section-tag">Le problème caché</div>
+        <h2 class="section-title">En octobre, tu es <em>plein.</em><br>En janvier, tu <em>attends.</em></h2>
+        <p class="saison-sub">Le bouche-à-oreille remplit 3 mois. Il s'arrête quand tes clients s'arrêtent de parler. Google, lui, travaille à 3h du matin le 2 janvier quand quelqu'un tape <strong>"plombier urgence [ta ville]"</strong>. Tu apparais, ou tu n'existes pas.</p>
+        <div class="saison-quote">
+          <span class="saison-quote-icon">💬</span>
+          <em>"Je n'ai pas besoin de pub, mes clients me recommandent."</em><br>
+          <span class="saison-quote-rep">→ C'est vrai en juillet. C'est faux en janvier.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
      STATS BAR
 ══════════════════════════════════════ -->
 <div class="stats-bar">
@@ -1992,71 +2152,48 @@ footer {
     </div>
   </div><!-- /.wrap fermé ici pour que le ruban soit pleine largeur -->
 
-  <!-- ── Ruban mètre pleine largeur ── -->
+  <!-- ── Rubalise chantier pleine largeur ── -->
   <div class="diag-wave-section">
 
-    <!-- SVG unique : embout + ruban animé, pleine largeur -->
     <svg class="diag-wave-svg" viewBox="0 0 1400 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="tapeGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#FFFDE7"/>
-          <stop offset="20%"  stop-color="#FFE57A"/>
-          <stop offset="60%"  stop-color="#FFD025"/>
-          <stop offset="100%" stop-color="#E6A800"/>
-        </linearGradient>
-        <linearGradient id="tapeGradShine" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="rgba(255,255,255,0.5)"/>
+        <!-- Rubalise : bandes jaune/noir à 45°, rotation autour du centre du ruban -->
+        <pattern id="rubaliseStripes" x="0" y="0" width="60" height="60"
+                 patternUnits="userSpaceOnUse" patternTransform="rotate(-45 700 130)">
+          <rect width="30" height="60" fill="#FFD025"/>
+          <rect x="30" width="30" height="60" fill="#111111"/>
+        </pattern>
+        <!-- Brillance sur la moitié supérieure du ruban -->
+        <linearGradient id="rubaliseShine" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="rgba(255,255,255,0.35)"/>
           <stop offset="45%"  stop-color="rgba(255,255,255,0)"/>
           <stop offset="100%" stop-color="rgba(0,0,0,0.08)"/>
         </linearGradient>
-        <linearGradient id="metalGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#C8D4DA"/>
-          <stop offset="50%"  stop-color="#E8F0F4"/>
-          <stop offset="100%" stop-color="#9AAAB2"/>
-        </linearGradient>
+        <!-- Clip dévoilement gauche → droite -->
         <clipPath id="tapeRevealClip">
-          <rect id="tapeRevealRect" x="38" y="0" width="0" height="260"/>
+          <rect id="tapeRevealRect" x="0" y="0" width="0" height="260"/>
         </clipPath>
       </defs>
 
-      <!-- ── EMBOUT MÉTALLIQUE : toujours visible, hors clip ── -->
-      <!-- Corps métal -->
-      <rect x="0" y="112" width="42" height="36" rx="2" fill="url(#metalGrad)"/>
-      <rect x="0" y="112" width="42" height="36" rx="2" fill="none" stroke="#8A9EA8" stroke-width="1.5"/>
-      <!-- Reflet métal haut -->
-      <rect x="2" y="114" width="38" height="8" rx="1" fill="rgba(255,255,255,0.5)"/>
-      <!-- Trou central -->
-      <rect x="8" y="120" width="14" height="20" rx="2" fill="#4A5E68"/>
-      <!-- Rivet gauche -->
-      <circle cx="5"  cy="130" r="2.5" fill="#AAB8C0" stroke="#8A9EA8" stroke-width="0.8"/>
-      <!-- Rivet droit -->
-      <circle cx="37" cy="130" r="2.5" fill="#AAB8C0" stroke="#8A9EA8" stroke-width="0.8"/>
-      <!-- Séparation métal / ruban -->
-      <line x1="42" y1="112" x2="42" y2="148" stroke="rgba(80,50,0,0.4)" stroke-width="2"/>
-
-      <!-- ── RUBAN animé (clip de gauche à droite) ── -->
       <g clip-path="url(#tapeRevealClip)">
-        <!-- Ombre portée -->
-        <path d="M38,130 L120,130 C180,130 220,70 320,70 C450,70 580,200 700,200 C820,200 940,70 1060,70 C1160,70 1280,200 1400,200"
-              fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="38" stroke-linecap="butt" transform="translate(0,6)"/>
-        <!-- Corps jaune -->
-        <path d="M38,130 L120,130 C180,130 220,70 320,70 C450,70 580,200 700,200 C820,200 940,70 1060,70 C1160,70 1280,200 1400,200"
-              fill="none" stroke="url(#tapeGrad)" stroke-width="34" stroke-linecap="butt"/>
-        <!-- Reflet -->
-        <path d="M38,130 L120,130 C180,130 220,70 320,70 C450,70 580,200 700,200 C820,200 940,70 1060,70 C1160,70 1280,200 1400,200"
-              fill="none" stroke="url(#tapeGradShine)" stroke-width="34" stroke-linecap="butt"/>
+        <!-- Ombre portée (chemin fermé décalé) -->
+        <path d="M0,105 L120,105 C180,105 220,45 320,45 C450,45 580,175 700,175 C820,175 940,45 1060,45 C1160,45 1280,175 1400,175
+                 L1400,225 C1280,225 1160,95 1060,95 C940,95 820,225 700,225 C580,225 450,95 320,95 C220,95 180,155 120,155 L0,155 Z"
+              fill="rgba(0,0,0,0.22)" transform="translate(0,9)"/>
+        <!-- Corps rubalise : chemin fermé rempli avec le pattern bandes -->
+        <path d="M0,105 L120,105 C180,105 220,45 320,45 C450,45 580,175 700,175 C820,175 940,45 1060,45 C1160,45 1280,175 1400,175
+                 L1400,225 C1280,225 1160,95 1060,95 C940,95 820,225 700,225 C580,225 450,95 320,95 C220,95 180,155 120,155 L0,155 Z"
+              fill="url(#rubaliseStripes)"/>
+        <!-- Reflet brillant par-dessus -->
+        <path d="M0,105 L120,105 C180,105 220,45 320,45 C450,45 580,175 700,175 C820,175 940,45 1060,45 C1160,45 1280,175 1400,175
+                 L1400,225 C1280,225 1160,95 1060,95 C940,95 820,225 700,225 C580,225 450,95 320,95 C220,95 180,155 120,155 L0,155 Z"
+              fill="url(#rubaliseShine)"/>
         <!-- Bord supérieur -->
-        <path d="M38,114 L120,114 C180,114 220,54 320,54 C450,54 580,184 700,184 C820,184 940,54 1060,54 C1160,54 1280,184 1400,184"
-              fill="none" stroke="rgba(140,80,0,0.5)" stroke-width="1.5" stroke-linecap="butt"/>
+        <path d="M0,105 L120,105 C180,105 220,45 320,45 C450,45 580,175 700,175 C820,175 940,45 1060,45 C1160,45 1280,175 1400,175"
+              fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="2.5" stroke-linecap="butt"/>
         <!-- Bord inférieur -->
-        <path d="M38,146 L120,146 C180,146 220,86 320,86 C450,86 580,216 700,216 C820,216 940,86 1060,86 C1160,86 1280,216 1400,216"
-              fill="none" stroke="rgba(140,80,0,0.5)" stroke-width="1.5" stroke-linecap="butt"/>
-        <!-- Grands traits cm -->
-        <path d="M38,130 L120,130 C180,130 220,70 320,70 C450,70 580,200 700,200 C820,200 940,70 1060,70 C1160,70 1280,200 1400,200"
-              fill="none" stroke="rgba(100,55,0,0.6)" stroke-width="26" stroke-linecap="butt" stroke-dasharray="2 34"/>
-        <!-- Petits traits mm -->
-        <path d="M38,130 L120,130 C180,130 220,70 320,70 C450,70 580,200 700,200 C820,200 940,70 1060,70 C1160,70 1280,200 1400,200"
-              fill="none" stroke="rgba(100,55,0,0.25)" stroke-width="10" stroke-linecap="butt" stroke-dasharray="1.2 11"/>
+        <path d="M0,155 L120,155 C180,155 220,95 320,95 C450,95 580,225 700,225 C820,225 940,95 1060,95 C1160,95 1280,225 1400,225"
+              fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="2.5" stroke-linecap="butt"/>
       </g>
     </svg>
 
@@ -2263,7 +2400,8 @@ footer {
   <div class="wrap">
     <div class="cta-grid">
       <div class="cta-left rv-l reveal">
-        <h2>On peut régler ça en 30 minutes.</h2>
+        <div class="cta-urgence">En ce moment, des clients cherchent ton métier dans ta ville.</div>
+        <h2>Tu veux savoir pourquoi ils n'appellent pas chez toi ?</h2>
         <p>Le Diagnostic de Visibilité identifie exactement ce qui bloque, et ce qu'il faut changer pour que tes clients te trouvent avant tes concurrents. Sans engagement, 100% personnalisé pour ton activité BTP.</p>
       </div>
       <div class="cta-right rv-r reveal">
@@ -2629,15 +2767,15 @@ const ro = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .rv-l, .rv-r').forEach(el => ro.observe(el));
 
-/* ── Mètre ruban animé : déroule au scroll ── */
+/* ── Rubalise chantier : déroule au scroll ── */
 (function() {
-  const section = document.querySelector('.diag-wave-section');
+  const section  = document.querySelector('.diag-wave-section');
   if (!section) return;
   const clipRect = document.getElementById('tapeRevealRect');
   const steps    = section.querySelectorAll('.diag-step-item.diag-anim');
-  const totalW   = 1362;
-  const dur      = 2600; // ms
-  const delays   = [200, 800, 1500, 2200]; // quand chaque carte apparaît
+  const totalW   = 1400;
+  const dur      = 2600;
+  const delays   = [200, 800, 1500, 2200];
 
   function easeInOut(t) {
     return t < .5 ? 2*t*t : -1+(4-2*t)*t;
@@ -2645,7 +2783,6 @@ document.querySelectorAll('.reveal, .rv-l, .rv-r').forEach(el => ro.observe(el))
 
   function runTape() {
     const start = performance.now();
-    // Déclenche l'apparition des cartes aux bons moments
     delays.forEach(function(d, i) {
       setTimeout(function() { steps[i].classList.add('diag-show'); }, d);
     });
