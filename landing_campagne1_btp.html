@@ -1462,6 +1462,81 @@ h2.section-title em { color:var(--orange); font-style:normal; }
 }
 
 /* ═══════════════════════════════════════════
+   OBJECTIONS
+═══════════════════════════════════════════ */
+.objections-section { padding: 80px 0; }
+.objections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.objection-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 2rem;
+  box-shadow: var(--sh);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: transform .25s, box-shadow .25s;
+}
+.objection-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-lg);
+}
+.obj-quote {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.55;
+  font-style: italic;
+  position: relative;
+}
+.obj-quote-mark {
+  font-size: 52px;
+  line-height: 0;
+  vertical-align: -18px;
+  color: var(--orange);
+  font-style: normal;
+  font-weight: 900;
+  margin-right: 2px;
+  opacity: .35;
+}
+.obj-separator {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.obj-sep-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.obj-sep-icon {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+.obj-reponse {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.obj-reponse strong {
+  color: var(--text);
+  font-weight: 800;
+  display: block;
+  margin-bottom: .3rem;
+}
+
+@media (max-width: 768px) {
+  .objections-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════
    CTA SECTION
 ═══════════════════════════════════════════ */
 .cta-section {
@@ -2124,7 +2199,7 @@ footer {
       <div class="calc-result-inner">
         <div class="result-left">
           <div class="result-label">Tu perds chaque mois</div>
-          <div class="result-amount" id="perte-mois">—</div>
+          <div class="result-amount" id="perte-mois">...</div>
           <div class="result-sub">de chiffre d'affaires laissé à tes concurrents</div>
         </div>
         <div class="result-right">
@@ -2368,6 +2443,83 @@ footer {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     OBJECTIONS
+══════════════════════════════════════ -->
+<section class="section section-alt objections-section">
+  <div class="wrap">
+
+    <div class="rv-l reveal">
+      <div class="section-tag">On a entendu ça des centaines de fois</div>
+      <h2 class="section-title">Ce que tu penses peut-être <em>en ce moment</em></h2>
+    </div>
+
+    <div class="objections-grid">
+
+      <div class="objection-card reveal d1">
+        <div class="obj-quote">
+          <span class="obj-quote-mark">"</span>
+          J'ai pas le temps de m'occuper de tout ça, je suis sur les chantiers.
+        </div>
+        <div class="obj-separator">
+          <div class="obj-sep-line"></div>
+          <div class="obj-sep-icon">→</div>
+          <div class="obj-sep-line"></div>
+        </div>
+        <div class="obj-reponse">
+          <strong>C'est exactement pour ça qu'on est là.</strong> Le diagnostic dure 30 minutes. C'est nous qui faisons le travail : le référencement, la fiche Google, les publicités. Toi tu restes sur le chantier. On s'occupe du reste.
+        </div>
+      </div>
+
+      <div class="objection-card reveal d2">
+        <div class="obj-quote">
+          <span class="obj-quote-mark">"</span>
+          J'ai déjà un site internet, ça devrait aller.
+        </div>
+        <div class="obj-separator">
+          <div class="obj-sep-line"></div>
+          <div class="obj-sep-icon">→</div>
+          <div class="obj-sep-line"></div>
+        </div>
+        <div class="obj-reponse">
+          <strong>Avoir un site et être trouvé, c'est pas la même chose.</strong> 90% des artisans qu'on accompagne avaient déjà un site. Le problème n'était pas le site : personne ne le voyait. Un site sans visibilité, c'est une vitrine dans une rue vide.
+        </div>
+      </div>
+
+      <div class="objection-card reveal d3">
+        <div class="obj-quote">
+          <span class="obj-quote-mark">"</span>
+          Je sais pas si ça va vraiment marcher pour moi.
+        </div>
+        <div class="obj-separator">
+          <div class="obj-sep-line"></div>
+          <div class="obj-sep-icon">→</div>
+          <div class="obj-sep-line"></div>
+        </div>
+        <div class="obj-reponse">
+          <strong>C'est pour ça que le diagnostic existe.</strong> En 30 minutes, on regarde ta situation réelle : ta zone, tes concurrents, ce que cherchent tes clients. Si on voit qu'il n'y a pas de levier, on te le dit. Sans engagement, sans fioriture.
+        </div>
+      </div>
+
+      <div class="objection-card reveal d4">
+        <div class="obj-quote">
+          <span class="obj-quote-mark">"</span>
+          C'est trop cher pour moi en ce moment.
+        </div>
+        <div class="obj-separator">
+          <div class="obj-sep-line"></div>
+          <div class="obj-sep-icon">→</div>
+          <div class="obj-sep-line"></div>
+        </div>
+        <div class="obj-reponse">
+          <strong>Reviens au calculateur.</strong> Si tu perds 2 chantiers par mois parce que tes clients ne te trouvent pas, combien ça te coûte sur l'année ? Le diagnostic visibilité n'est pas une dépense, c'est le début d'une réponse.
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
