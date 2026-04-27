@@ -7,6 +7,18 @@
 <link rel="icon" type="image/svg+xml" href="Agence%20de%20l'ombre%20logo%20d%202.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','810327792040286');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=810327792040286&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
 /* ═══════════════════════════════════════════
    TOKENS
@@ -1541,9 +1553,6 @@ h2.section-title em { color:var(--orange); font-style:normal; }
   margin-bottom: .3rem;
 }
 
-@media (max-width: 768px) {
-  .objections-grid { grid-template-columns: 1fr; }
-}
 
 /* ═══════════════════════════════════════════
    CTA SECTION
@@ -1903,9 +1912,23 @@ footer {
   letter-spacing: .03em;
 }
 
+.mid-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+.mid-cta .btn-primary { font-size: 15px; padding: .9rem 2rem; }
+@media (max-width: 640px) {
+  .mid-cta .btn-primary { width: 100%; text-align: center; }
+}
+
 @media (max-width: 640px) {
   .team-grid { grid-template-columns: 1fr; }
   .team-card-full { max-width: 100%; }
+  .team-card { padding: 1.1rem; gap: .75rem; }
+  .team-photo { width: 52px; height: 52px; border-radius: 8px; }
+  .team-badge { width: 18px; height: 18px; bottom: -4px; right: -4px; }
+  .team-badge svg { width: 9px; height: 9px; }
 }
 
 /* ═══════════════════════════════════════════
@@ -2260,7 +2283,7 @@ footer {
         <div class="nav-logo-sub">Spécialiste BTP</div>
       </div>
     </a>
-    <a href="https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah" target="_blank" class="nav-cta">Réserver mon Diagnostic Visibilité →</a>
+    <a href="https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah" target="_blank" class="nav-cta" onclick="if(typeof fbq==='function')fbq('track','Lead')">Réserver mon Diagnostic Visibilité →</a>
   </div>
 </nav>
 </div><!-- /.header-sticky -->
@@ -2282,7 +2305,7 @@ footer {
         <h1>Pourquoi certains artisans sont <em>complets</em>… et d'autres attendent que le téléphone sonne ?</h1>
         <p>La différence, ce n'est pas la qualité du travail mais c'est <strong>QUI apparaît sur Google</strong> quand un client cherche un plombier, un électricien ou un carreleur près de chez lui.</p>
         <div class="hero-cta-row">
-          <button class="btn-primary" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah','_blank')">Réserver mon diagnostic visibilité →</button>
+          <button class="btn-primary" onclick="trackAndBook()">Réserver mon diagnostic visibilité →</button>
           <div class="hero-trust-list">
             <span class="hero-trust">Sans engagement</span>
             <span class="hero-trust">30 minutes</span>
@@ -2479,6 +2502,9 @@ footer {
           <em>"Je n'ai pas besoin de pub, mes clients me recommandent."</em><br>
           <span class="saison-quote-rep">→ Jusqu'au jour où ils s'arrêtent. Et tu n'as aucun autre canal.</span>
         </div>
+        <div class="mid-cta" style="justify-content:flex-start;margin-top:1.75rem;">
+          <button class="btn-primary" onclick="trackAndBook()">Analyser ma visibilité gratuitement →</button>
+        </div>
       </div>
 
     </div>
@@ -2613,7 +2639,7 @@ footer {
             Ces <strong id="bridge-amount"></strong>/mois t'appartiennent déjà.<br>
             <em>Tu les laisses juste filer vers tes concurrents.</em>
           </div>
-          <button class="result-cta" id="result-cta-btn" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah','_blank')">
+          <button class="result-cta" id="result-cta-btn" onclick="trackAndBook()">
             Réserver mon diagnostic visibilité →
           </button>
         </div>
@@ -2631,11 +2657,23 @@ footer {
     <div class="rv-l reveal">
       <div class="section-tag">Le Diagnostic de Visibilité</div>
       <h2 class="section-title">30 minutes pendant lesquelles on passe en revue <em>tout ce qui bloque</em></h2>
-      <p class="section-sub" style="max-width:100%;">Un audit complet de ta présence en ligne, réalisé par un expert en référencement local spécialisé dans le BTP. On connaît ton secteur d'activité, tes concurrents dans ta région, et les recherches que font tes clients potentiels. En 30 minutes, tu repars avec une vision claire de ce qui te rend invisible sur Google, et un plan d'action concret pour y remédier.</p>
+      <p class="section-sub" style="max-width:100%;">En 30 minutes avec un expert BTP, tu repars avec un plan d'action concret pour passer devant tes concurrents sur Google.</p>
     </div>
   </div><!-- /.wrap -->
 
   <!-- ── Frise cônes de chantier ── -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <defs>
+      <linearGradient id="coneGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#F9A550"/>
+        <stop offset="45%"  stop-color="#EF7F15"/>
+        <stop offset="100%" stop-color="#B85C00"/>
+      </linearGradient>
+      <clipPath id="coneClip">
+        <path d="M24,2 L44,52 L4,52 Z"/>
+      </clipPath>
+    </defs>
+  </svg>
   <div class="diag-timeline">
     <div class="wrap">
       <div class="diag-tl-track">
@@ -2644,12 +2682,24 @@ footer {
 
           <div class="diag-tl-step">
             <svg class="diag-tl-cone" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <ellipse cx="24" cy="61" rx="17" ry="3.5" fill="rgba(0,0,0,0.13)"/>
-              <path d="M24,2 L44,54 L4,54 Z" fill="#EF7F15"/>
-              <path d="M9,42 L39,42 L43,52 L5,52 Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M16,24 L33,24 L36,32 L13,32 Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M22,2 L24,2 L26,9 L22,9 Z" fill="rgba(255,210,80,0.4)"/>
-              <rect x="2" y="54" width="44" height="8" rx="4" fill="#1c1c1c"/>
+              <!-- Ombre portée -->
+              <ellipse cx="24" cy="60" rx="19" ry="4" fill="rgba(0,0,0,0.22)"/>
+              <!-- Socle -->
+              <rect x="0" y="51" width="48" height="11" rx="3" fill="#1a1a1a"/>
+              <rect x="2" y="52.5" width="44" height="2" rx="1" fill="rgba(255,255,255,0.07)"/>
+              <!-- Corps du cône avec dégradé -->
+              <path d="M24,3 L44,51 L4,51 Z" fill="url(#coneGrad)"/>
+              <!-- Bandes blanches réfléchissantes, clippées sur le contour du cône -->
+              <g clip-path="url(#coneClip)">
+                <rect x="0" y="38" width="48" height="12" fill="rgba(255,255,255,0.92)"/>
+                <rect x="0" y="21" width="48" height="9"  fill="rgba(255,255,255,0.92)"/>
+              </g>
+              <!-- Ombrage côté droit (profondeur 3D) -->
+              <path d="M24,3 L44,51 L36,51 Z" fill="rgba(0,0,0,0.13)"/>
+              <!-- Reflet côté gauche -->
+              <path d="M24,3 L4,51 L12,51 Z"  fill="rgba(255,255,255,0.08)"/>
+              <!-- Pointe lumineuse -->
+              <ellipse cx="24" cy="5.5" rx="3" ry="2" fill="rgba(255,215,80,0.55)"/>
             </svg>
             <div class="diag-tl-dot">1</div>
             <div class="diag-tl-card">
@@ -2661,12 +2711,24 @@ footer {
 
           <div class="diag-tl-step">
             <svg class="diag-tl-cone" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <ellipse cx="24" cy="61" rx="17" ry="3.5" fill="rgba(0,0,0,0.13)"/>
-              <path d="M24,2 L44,54 L4,54 Z" fill="#EF7F15"/>
-              <path d="M9,42 L39,42 L43,52 L5,52 Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M16,24 L33,24 L36,32 L13,32 Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M22,2 L24,2 L26,9 L22,9 Z" fill="rgba(255,210,80,0.4)"/>
-              <rect x="2" y="54" width="44" height="8" rx="4" fill="#1c1c1c"/>
+              <!-- Ombre portée -->
+              <ellipse cx="24" cy="60" rx="19" ry="4" fill="rgba(0,0,0,0.22)"/>
+              <!-- Socle -->
+              <rect x="0" y="51" width="48" height="11" rx="3" fill="#1a1a1a"/>
+              <rect x="2" y="52.5" width="44" height="2" rx="1" fill="rgba(255,255,255,0.07)"/>
+              <!-- Corps du cône avec dégradé -->
+              <path d="M24,3 L44,51 L4,51 Z" fill="url(#coneGrad)"/>
+              <!-- Bandes blanches réfléchissantes, clippées sur le contour du cône -->
+              <g clip-path="url(#coneClip)">
+                <rect x="0" y="38" width="48" height="12" fill="rgba(255,255,255,0.92)"/>
+                <rect x="0" y="21" width="48" height="9"  fill="rgba(255,255,255,0.92)"/>
+              </g>
+              <!-- Ombrage côté droit (profondeur 3D) -->
+              <path d="M24,3 L44,51 L36,51 Z" fill="rgba(0,0,0,0.13)"/>
+              <!-- Reflet côté gauche -->
+              <path d="M24,3 L4,51 L12,51 Z"  fill="rgba(255,255,255,0.08)"/>
+              <!-- Pointe lumineuse -->
+              <ellipse cx="24" cy="5.5" rx="3" ry="2" fill="rgba(255,215,80,0.55)"/>
             </svg>
             <div class="diag-tl-dot">2</div>
             <div class="diag-tl-card">
@@ -2678,12 +2740,24 @@ footer {
 
           <div class="diag-tl-step">
             <svg class="diag-tl-cone" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <ellipse cx="24" cy="61" rx="17" ry="3.5" fill="rgba(0,0,0,0.13)"/>
-              <path d="M24,2 L44,54 L4,54 Z" fill="#EF7F15"/>
-              <path d="M9,42 L39,42 L43,52 L5,52 Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M16,24 L33,24 L36,32 L13,32 Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M22,2 L24,2 L26,9 L22,9 Z" fill="rgba(255,210,80,0.4)"/>
-              <rect x="2" y="54" width="44" height="8" rx="4" fill="#1c1c1c"/>
+              <!-- Ombre portée -->
+              <ellipse cx="24" cy="60" rx="19" ry="4" fill="rgba(0,0,0,0.22)"/>
+              <!-- Socle -->
+              <rect x="0" y="51" width="48" height="11" rx="3" fill="#1a1a1a"/>
+              <rect x="2" y="52.5" width="44" height="2" rx="1" fill="rgba(255,255,255,0.07)"/>
+              <!-- Corps du cône avec dégradé -->
+              <path d="M24,3 L44,51 L4,51 Z" fill="url(#coneGrad)"/>
+              <!-- Bandes blanches réfléchissantes, clippées sur le contour du cône -->
+              <g clip-path="url(#coneClip)">
+                <rect x="0" y="38" width="48" height="12" fill="rgba(255,255,255,0.92)"/>
+                <rect x="0" y="21" width="48" height="9"  fill="rgba(255,255,255,0.92)"/>
+              </g>
+              <!-- Ombrage côté droit (profondeur 3D) -->
+              <path d="M24,3 L44,51 L36,51 Z" fill="rgba(0,0,0,0.13)"/>
+              <!-- Reflet côté gauche -->
+              <path d="M24,3 L4,51 L12,51 Z"  fill="rgba(255,255,255,0.08)"/>
+              <!-- Pointe lumineuse -->
+              <ellipse cx="24" cy="5.5" rx="3" ry="2" fill="rgba(255,215,80,0.55)"/>
             </svg>
             <div class="diag-tl-dot">3</div>
             <div class="diag-tl-card">
@@ -2695,12 +2769,24 @@ footer {
 
           <div class="diag-tl-step">
             <svg class="diag-tl-cone" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <ellipse cx="24" cy="61" rx="17" ry="3.5" fill="rgba(0,0,0,0.13)"/>
-              <path d="M24,2 L44,54 L4,54 Z" fill="#EF7F15"/>
-              <path d="M9,42 L39,42 L43,52 L5,52 Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M16,24 L33,24 L36,32 L13,32 Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M22,2 L24,2 L26,9 L22,9 Z" fill="rgba(255,210,80,0.4)"/>
-              <rect x="2" y="54" width="44" height="8" rx="4" fill="#1c1c1c"/>
+              <!-- Ombre portée -->
+              <ellipse cx="24" cy="60" rx="19" ry="4" fill="rgba(0,0,0,0.22)"/>
+              <!-- Socle -->
+              <rect x="0" y="51" width="48" height="11" rx="3" fill="#1a1a1a"/>
+              <rect x="2" y="52.5" width="44" height="2" rx="1" fill="rgba(255,255,255,0.07)"/>
+              <!-- Corps du cône avec dégradé -->
+              <path d="M24,3 L44,51 L4,51 Z" fill="url(#coneGrad)"/>
+              <!-- Bandes blanches réfléchissantes, clippées sur le contour du cône -->
+              <g clip-path="url(#coneClip)">
+                <rect x="0" y="38" width="48" height="12" fill="rgba(255,255,255,0.92)"/>
+                <rect x="0" y="21" width="48" height="9"  fill="rgba(255,255,255,0.92)"/>
+              </g>
+              <!-- Ombrage côté droit (profondeur 3D) -->
+              <path d="M24,3 L44,51 L36,51 Z" fill="rgba(0,0,0,0.13)"/>
+              <!-- Reflet côté gauche -->
+              <path d="M24,3 L4,51 L12,51 Z"  fill="rgba(255,255,255,0.08)"/>
+              <!-- Pointe lumineuse -->
+              <ellipse cx="24" cy="5.5" rx="3" ry="2" fill="rgba(255,215,80,0.55)"/>
             </svg>
             <div class="diag-tl-dot">4</div>
             <div class="diag-tl-card">
@@ -2714,6 +2800,11 @@ footer {
       </div><!-- /.diag-tl-track -->
     </div><!-- /.wrap -->
   </div><!-- /.diag-timeline -->
+  <div class="wrap">
+    <div class="mid-cta reveal">
+      <button class="btn-primary" onclick="trackAndBook()">Je veux ce diagnostic →</button>
+    </div>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -2795,6 +2886,10 @@ footer {
         <div class="garantie-title">Notre engagement : on continue jusqu'à que ça marche.</div>
         <div class="garantie-desc">On ne livre pas un site et on disparaît. On suit ton positionnement chaque mois, on ajuste, on optimise. <strong>On s'arrête quand tes chantiers rentrent, pas avant.</strong> C'est comme ça qu'on travaille avec chacun de nos artisans.</div>
       </div>
+    </div>
+
+    <div class="mid-cta reveal">
+      <button class="btn-primary" onclick="trackAndBook()">Démarrer · C'est gratuit →</button>
     </div>
 
   </div>
@@ -2909,7 +3004,7 @@ footer {
             <div class="agence-brand-tag">Spécialisée BTP · France entière</div>
           </div>
         </div>
-        <div class="agence-desc">On ne fait pas de communication généraliste. On structure la visibilité locale des entreprises du BTP : fiche Google, site web, référencement, publicités Méta Ads, réseaux sociaux, shooting chantiers, identité visuelle et branding. Notre spécialisation, c'est notre force, on connaît ton marché, tes concurrents, et ce que cherchent tes clients.</div>
+        <div class="agence-desc">On ne fait que le BTP. Fiche Google, site, SEO, publicités, réseaux, shooting chantiers. On connaît ton marché, tes concurrents, et ce que cherchent tes clients.</div>
         <div class="agence-stats-row">
           <div class="agence-stat">
             <div class="agence-stat-num">+25</div>
@@ -3028,102 +3123,9 @@ footer {
         </div>
       </div>
 
-      <!-- Alicia -->
-      <div class="team-card team-card-full reveal d5">
-        <div class="team-photo-wrap">
-          <img src="team/alicia.jpg" alt="Alicia C." class="team-photo">
-          <div class="team-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.54-.54a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
-          </div>
-        </div>
-        <div class="team-info">
-          <div class="team-name">Alicia C.</div>
-          <div class="team-role">Support Client</div>
-          <div class="team-desc">Votre contact privilégié. Support technique et suivi communication.</div>
-          <div class="team-tags">
-            <span class="team-tag">Support</span>
-            <span class="team-tag">Relation client</span>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     OBJECTIONS
-══════════════════════════════════════ -->
-<section class="section section-alt objections-section">
-  <div class="wrap">
-
-    <div class="rv-l reveal">
-      <div class="section-tag">On a entendu ça des centaines de fois</div>
-      <h2 class="section-title">Ce que tu penses peut-être <em>en ce moment</em></h2>
-    </div>
-
-    <div class="objections-grid">
-
-      <div class="objection-card reveal d1">
-        <div class="obj-quote">
-          <span class="obj-quote-mark">"</span>
-          J'ai pas le temps de m'occuper de tout ça, je suis sur les chantiers.
-        </div>
-        <div class="obj-separator">
-          <div class="obj-sep-line"></div>
-          <div class="obj-sep-icon">→</div>
-          <div class="obj-sep-line"></div>
-        </div>
-        <div class="obj-reponse">
-          <strong>C'est exactement pour ça qu'on est là.</strong> Le diagnostic visibilité dure 30 minutes. C'est nous qui faisons le travail : le référencement, la fiche Google, les publicités. Toi tu restes sur le chantier. On s'occupe du reste.
-        </div>
-      </div>
-
-      <div class="objection-card reveal d2">
-        <div class="obj-quote">
-          <span class="obj-quote-mark">"</span>
-          J'ai déjà un site internet, ça devrait aller.
-        </div>
-        <div class="obj-separator">
-          <div class="obj-sep-line"></div>
-          <div class="obj-sep-icon">→</div>
-          <div class="obj-sep-line"></div>
-        </div>
-        <div class="obj-reponse">
-          <strong>Avoir un site et être trouvé, c'est pas la même chose.</strong> 90% des artisans qu'on accompagne avaient déjà un site. Le problème n'était pas le site : personne ne le voyait. Un site sans visibilité, c'est une vitrine dans une rue vide.
-        </div>
-      </div>
-
-      <div class="objection-card reveal d3">
-        <div class="obj-quote">
-          <span class="obj-quote-mark">"</span>
-          Je sais pas si ça va vraiment marcher pour moi.
-        </div>
-        <div class="obj-separator">
-          <div class="obj-sep-line"></div>
-          <div class="obj-sep-icon">→</div>
-          <div class="obj-sep-line"></div>
-        </div>
-        <div class="obj-reponse">
-          <strong>C'est pour ça que le diagnostic visibilité existe.</strong> En 30 minutes, on regarde ta situation réelle : ta zone, tes concurrents, ce que cherchent tes clients. Si on voit qu'il n'y a pas de levier, on te le dit. Sans engagement, sans fioriture.
-        </div>
-      </div>
-
-      <div class="objection-card reveal d4">
-        <div class="obj-quote">
-          <span class="obj-quote-mark">"</span>
-          C'est trop cher pour moi en ce moment.
-        </div>
-        <div class="obj-separator">
-          <div class="obj-sep-line"></div>
-          <div class="obj-sep-icon">→</div>
-          <div class="obj-sep-line"></div>
-        </div>
-        <div class="obj-reponse">
-          <strong>Reviens au calculateur.</strong> Si tu perds 2 chantiers par mois parce que tes clients ne te trouvent pas, combien ça te coûte sur l'année ? Le diagnostic visibilité n'est pas une dépense, c'est le début d'une réponse.
-        </div>
-      </div>
-
+    <div class="mid-cta reveal">
+      <button class="btn-primary" onclick="trackAndBook()">Prendre rendez-vous avec l'équipe →</button>
     </div>
   </div>
 </section>
@@ -3135,11 +3137,43 @@ footer {
   <div class="wrap">
     <div class="rv-l reveal">
       <div class="section-tag">Questions fréquentes</div>
-      <h2 class="section-title">Ce que les artisans nous demandent <em>avant de réserver</em></h2>
+      <h2 class="section-title">Ce que tu te demandes <em>en ce moment</em></h2>
     </div>
     <div class="faq-list">
 
       <div class="faq-item reveal d1">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          "J'ai pas le temps de m'occuper de tout ça, je suis sur les chantiers."
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a"><strong>C'est exactement pour ça qu'on est là.</strong> Le diagnostic dure 30 minutes. Après, c'est nous qui faisons le travail : référencement, fiche Google, publicités. Toi tu restes sur le chantier.</div>
+      </div>
+
+      <div class="faq-item reveal d2">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          "J'ai déjà un site internet, ça devrait aller."
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a"><strong>Avoir un site et être trouvé, c'est pas la même chose.</strong> 90% des artisans qu'on accompagne avaient déjà un site. Le problème n'était pas le site : personne ne le voyait. Un site sans visibilité, c'est une vitrine dans une rue vide.</div>
+      </div>
+
+      <div class="faq-item reveal d3">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          "Je sais pas si ça va vraiment marcher pour moi."
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a"><strong>C'est pour ça que le diagnostic existe.</strong> En 30 minutes, on regarde ta situation réelle : ta zone, tes concurrents, ce que cherchent tes clients. Si on voit qu'il n'y a pas de levier, on te le dit. Sans engagement.</div>
+      </div>
+
+      <div class="faq-item reveal d4">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          "C'est trop cher pour moi en ce moment."
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-a"><strong>Reviens au calculateur.</strong> Si tu perds 2 chantiers par mois parce que tes clients ne te trouvent pas, combien ça te coûte sur l'année ? Le diagnostic n'est pas une dépense, c'est le début d'une réponse.</div>
+      </div>
+
+      <div class="faq-item reveal d5">
         <button class="faq-q" onclick="toggleFaq(this)">
           Vous travaillez dans toute la France ?
           <span class="faq-chevron">+</span>
@@ -3147,15 +3181,15 @@ footer {
         <div class="faq-a">Oui, on est 100% à distance. On accompagne des artisans BTP partout en France, de Paris à Marseille en passant par Lyon, Bordeaux, Nantes ou Toulouse. La zone géographique ne change rien à notre méthode : on connaît les recherches locales de tes clients et on cible ta ville précisément.</div>
       </div>
 
-      <div class="faq-item reveal d2">
+      <div class="faq-item reveal d6">
         <button class="faq-q" onclick="toggleFaq(this)">
           Combien de temps avant de voir des résultats sur Google ?
           <span class="faq-chevron">+</span>
         </button>
-        <div class="faq-a"><strong>Fiche Google Business :</strong> les premières améliorations se voient en 30 à 60 jours. <strong>SEO local :</strong> un positionnement solide se construit sur 3 à 6 mois. C'est pour ça qu'on reste avec toi dans la durée. On ne te lâche pas au bout d'un mois.</div>
+        <div class="faq-a"><strong>Fiche Google Business :</strong> les premières améliorations se voient en 30 à 60 jours. <strong>SEO local :</strong> un positionnement solide se construit sur 3 à 6 mois. C'est pour ça qu'on reste avec toi dans la durée.</div>
       </div>
 
-      <div class="faq-item reveal d3">
+      <div class="faq-item reveal d6">
         <button class="faq-q" onclick="toggleFaq(this)">
           Quelle différence avec une agence web classique ?
           <span class="faq-chevron">+</span>
@@ -3163,15 +3197,15 @@ footer {
         <div class="faq-a">Une agence généraliste te fait un joli site. Nous, on fait un site qui <strong>génère des appels</strong> pour un plombier, un électricien ou un carreleur. On connaît les mots que tapent tes clients, les concurrents qui dominent ta zone, et les arguments qui font décrocher le téléphone dans le BTP. C'est notre seul métier.</div>
       </div>
 
-      <div class="faq-item reveal d4">
+      <div class="faq-item reveal d6">
         <button class="faq-q" onclick="toggleFaq(this)">
           Et si je n'ai pas encore de site internet ?
           <span class="faq-chevron">+</span>
         </button>
-        <div class="faq-a">C'est exactement pour ça qu'on est là. On construit tout depuis zéro : logo, site, fiche Google, référencement. Aucun prérequis. Il suffit de vouloir que tes clients te trouvent.</div>
+        <div class="faq-a">On construit tout depuis zéro : logo, site, fiche Google, référencement. Aucun prérequis. Il suffit de vouloir que tes clients te trouvent.</div>
       </div>
 
-      <div class="faq-item reveal d5">
+      <div class="faq-item reveal d6">
         <button class="faq-q" onclick="toggleFaq(this)">
           Est-ce que je suis engagé sur une longue durée ?
           <span class="faq-chevron">+</span>
@@ -3230,7 +3264,7 @@ footer {
             <span>Tu repars avec un plan d'action clair, <strong>qu'on travaille ensemble ou pas</strong></span>
           </div>
         </div>
-        <button class="cta-main-btn" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah','_blank')">
+        <button class="cta-main-btn" onclick="trackAndBook()">
           Réserver mon Diagnostic Visibilité →
         </button>
         <div class="cta-checks">
@@ -3313,6 +3347,13 @@ footer {
      SCRIPTS
 ══════════════════════════════════════ -->
 <script>
+/* ── Meta Pixel : helper conversion ────────── */
+const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah';
+function trackAndBook() {
+  if (typeof fbq === 'function') fbq('track', 'Lead');
+  window.open(BOOKING_URL, '_blank');
+}
+
 /* ── Calculateur ─────────────────────────── */
 let panier = null, chantierActuel = null, posRate = null, posKey = null, posLabel = null, objectif = null;
 
@@ -3520,6 +3561,7 @@ function calculate() {
     bridgeEl.style.display = 'block';
   }
   if (ctaBtn) ctaBtn.textContent = 'Ces ' + lost.toLocaleString('fr-FR') + ' € sont à toi. Viens les chercher →';
+  if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: 'Calculateur résultat', value: lost, currency: 'EUR' });
   setTimeout(() => box.scrollIntoView({ behavior:'smooth', block:'nearest' }), 200);
 }
 
