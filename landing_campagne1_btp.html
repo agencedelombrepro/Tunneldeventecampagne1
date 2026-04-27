@@ -104,10 +104,18 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .rv-l { opacity:0; transform:translateX(-28px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
 .rv-r { opacity:0; transform:translateX(28px);  transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
 .rv-l.visible, .rv-r.visible { opacity:1; transform:translateX(0); }
-.d1 { transition-delay:.07s; }
-.d2 { transition-delay:.14s; }
-.d3 { transition-delay:.21s; }
-.d4 { transition-delay:.28s; }
+.d1 { transition-delay:.08s; }
+.d2 { transition-delay:.18s; }
+.d3 { transition-delay:.28s; }
+.d4 { transition-delay:.38s; }
+.d5 { transition-delay:.48s; }
+.d6 { transition-delay:.58s; }
+.rv-up {
+  opacity: 0;
+  transform: translateY(40px) scale(.98);
+  transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+}
+.rv-up.visible { opacity: 1; transform: translateY(0) scale(1); }
 
 /* ═══════════════════════════════════════════
    TOPBAR
@@ -1807,6 +1815,100 @@ footer {
 }
 
 /* ═══════════════════════════════════════════
+   SECTION ÉQUIPE
+═══════════════════════════════════════════ */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+.team-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  box-shadow: var(--sh);
+  transition: transform .25s, box-shadow .25s;
+}
+.team-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-lg);
+}
+.team-card-full {
+  grid-column: 1 / -1;
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+.team-photo-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.team-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.team-badge {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #fff;
+}
+.team-info { flex: 1; min-width: 0; }
+.team-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: .15rem;
+}
+.team-role {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: .6rem;
+}
+.team-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: .75rem;
+}
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.team-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text);
+  background: rgba(239,127,21,.08);
+  border: 1px solid rgba(239,127,21,.2);
+  border-radius: 20px;
+  padding: .2rem .6rem;
+  letter-spacing: .03em;
+}
+
+@media (max-width: 640px) {
+  .team-grid { grid-template-columns: 1fr; }
+  .team-card-full { max-width: 100%; }
+}
+
+/* ═══════════════════════════════════════════
    SECTION OFFRE
 ═══════════════════════════════════════════ */
 .offre-grid {
@@ -1850,9 +1952,34 @@ footer {
   border-radius: 20px;
   white-space: nowrap;
 }
+.offre-speed-label {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: var(--orange);
+  border: 1.5px solid var(--orange);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: .3rem .85rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
 .offre-icon {
-  font-size: 2rem;
-  line-height: 1;
+  width: 44px; height: 44px;
+  background: rgba(239,127,21,.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.garantie-icon {
+  width: 44px; height: 44px;
+  background: rgba(239,127,21,.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
 .offre-delay {
   font-size: 10px;
@@ -2005,11 +2132,6 @@ footer {
   padding: 1.5rem 2rem;
   margin-top: 2rem;
   box-shadow: 0 4px 24px rgba(239,127,21,.12);
-}
-.garantie-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-  line-height: 1;
 }
 .garantie-body {}
 .garantie-title {
@@ -2338,12 +2460,12 @@ footer {
             <div class="source-name">Google / Internet</div>
             <div class="source-track">
               <div class="source-fill source-fill-absent"></div>
-              <span class="source-absent-tag">absent — tu n'existes pas en ligne</span>
+              <span class="source-absent-tag">absent · tu n'existes pas en ligne</span>
             </div>
           </div>
         </div>
         <div class="source-risk">
-          <span class="source-risk-icon">⚠️</span>
+          <span class="source-risk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
           <span><strong>1 seule source = 1 seul point de rupture.</strong> Quand tes clients s'arrêtent de parler, il n'y a rien d'autre.</span>
         </div>
       </div>
@@ -2352,9 +2474,8 @@ footer {
       <div class="saison-text rv-r reveal">
         <div class="section-tag">Le problème caché</div>
         <h2 class="section-title">Tout vient du bouche-à-oreille.<br>Sur Internet, tu es <em>invisible.</em></h2>
-        <p class="saison-sub">Le bouche-à-oreille c'est bien — jusqu'à ce que tes clients s'arrêtent de parler. Google, lui, travaille à 3h du matin le 2 janvier quand quelqu'un tape <strong>"plombier urgence [ta ville]"</strong>. Tu apparais, ou tu n'existes pas. C'est ça, le vrai problème : <strong>un seul panier, et zéro filet.</strong></p>
+        <p class="saison-sub">Le bouche-à-oreille c'est bien. Jusqu'au jour où tes clients s'arrêtent de parler. Google, lui, travaille à 3h du matin le 2 janvier quand quelqu'un tape <strong>"plombier urgence [ta ville]"</strong>. Tu apparais, ou tu n'existes pas. C'est ça, le vrai problème : <strong>un seul panier, et zéro filet.</strong></p>
         <div class="saison-quote">
-          <span class="saison-quote-icon">💬</span>
           <em>"Je n'ai pas besoin de pub, mes clients me recommandent."</em><br>
           <span class="saison-quote-rep">→ Jusqu'au jour où ils s'arrêtent. Et tu n'as aucun autre canal.</span>
         </div>
@@ -2489,8 +2610,8 @@ footer {
           <div class="result-badge" id="perte-annee"></div>
           <div class="result-expl" id="explication"></div>
           <div class="result-bridge" id="result-bridge" style="display:none;">
-            Ces <strong id="bridge-amount"></strong>/mois partent chez tes concurrents.<br>
-            Le diagnostic identifie exactement <em>comment les récupérer.</em>
+            Ces <strong id="bridge-amount"></strong>/mois t'appartiennent déjà.<br>
+            <em>Tu les laisses juste filer vers tes concurrents.</em>
           </div>
           <button class="result-cta" id="result-cta-btn" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah','_blank')">
             Réserver mon diagnostic visibilité →
@@ -2596,20 +2717,21 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════
-     OFFRE — CE QU'ON CONSTRUIT
+     OFFRE : CE QU'ON CONSTRUIT
 ══════════════════════════════════════ -->
 <section class="section section-alt">
   <div class="wrap">
     <div class="rv-l reveal">
       <div class="section-tag">Ce qu'on construit ensemble</div>
       <h2 class="section-title">Un site qui travaille pour toi <em>24h/24.</em><br>Même quand tu es sur le chantier.</h2>
-      <p class="section-sub" style="max-width:620px;">Pas une vitrine. Une machine à générer des appels. On livre un ensemble cohérent — site, fiche Google, SEO local — pensé pour ton corps de métier et ta zone.</p>
+      <p class="section-sub" style="max-width:620px;">Pas une vitrine. Une machine à générer des appels. On livre un ensemble cohérent : site, fiche Google, SEO local, pensé pour ton corps de métier et ta zone.</p>
     </div>
 
     <div class="offre-grid">
 
-      <div class="offre-card reveal d1">
-        <div class="offre-icon">🌐</div>
+      <div class="offre-card offre-card-featured reveal d1">
+        <div class="offre-featured-label">Le plus rentable</div>
+        <div class="offre-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <div class="offre-delay">Livré en 30 jours</div>
         <div class="offre-title">Site web optimisé SEO local</div>
         <div class="offre-desc">Conçu pour que le visiteur qui cherche ton métier dans ta ville devienne un appel. Chaque page cible une requête réelle de tes clients.</div>
@@ -2621,10 +2743,10 @@ footer {
         </ul>
       </div>
 
-      <div class="offre-card offre-card-featured reveal d2">
-        <div class="offre-featured-label">Le plus rentable</div>
-        <div class="offre-icon">📍</div>
-        <div class="offre-delay">Résultats en 30–60 jours</div>
+      <div class="offre-card reveal d2">
+        <div class="offre-speed-label">Résultats visibles en 30 jours</div>
+        <div class="offre-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="offre-delay">Livré en 30 jours</div>
         <div class="offre-title">Fiche Google Business optimisée</div>
         <div class="offre-desc">70% des artisans sont choisis directement depuis Google Maps. On te positionne dans le "pack 3" local pour ta ville et ton métier.</div>
         <ul class="offre-list">
@@ -2636,7 +2758,7 @@ footer {
       </div>
 
       <div class="offre-card reveal d3">
-        <div class="offre-icon">📈</div>
+        <div class="offre-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
         <div class="offre-delay">Résultats durables dans le temps</div>
         <div class="offre-title">Référencement local continu</div>
         <div class="offre-desc">Le SEO n'est pas un coup de peinture. Chaque mois on travaille pour que tu montes et restes en haut de Google dans ta zone, devant tes concurrents.</div>
@@ -2668,7 +2790,7 @@ footer {
     </div>
 
     <div class="garantie-strip reveal">
-      <div class="garantie-icon">🔒</div>
+      <div class="garantie-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <div class="garantie-body">
         <div class="garantie-title">Notre engagement : on continue jusqu'à que ça marche.</div>
         <div class="garantie-desc">On ne livre pas un site et on disparaît. On suit ton positionnement chaque mois, on ajuste, on optimise. <strong>On s'arrête quand tes chantiers rentrent, pas avant.</strong> C'est comme ça qu'on travaille avec chacun de nos artisans.</div>
@@ -2803,7 +2925,7 @@ footer {
           </div>
         </div>
         <div class="urgency-strip">
-          <div class="urgency-icon">⚠️</div>
+          <div class="urgency-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <div class="urgency-text">Les créneaux sont <strong>limités chaque semaine</strong>, il reste
             <a href="https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah" target="_blank" class="slot-counter slot-counter-link">
               <strong id="placesCount" class="places-num">9</strong>
@@ -2812,6 +2934,119 @@ footer {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ÉQUIPE
+══════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="rv-l reveal">
+      <div class="section-tag">L'équipe derrière les résultats</div>
+      <h2 class="section-title">Des vraies personnes.<br><em>Pas une agence fantôme.</em></h2>
+      <p class="section-sub" style="max-width:560px;">Voici une partie de l'équipe qui travaille pour toi. 100% spécialisée BTP, chacune a un rôle précis pour que ton chantier soit visible avant tes concurrents.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <!-- Johanna -->
+      <div class="team-card reveal d1">
+        <div class="team-photo-wrap">
+          <img src="team/johanna.jpg" alt="Johanna G." class="team-photo">
+          <div class="team-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Johanna G.</div>
+          <div class="team-role">Fondatrice &amp; Stratège · 9 ans d'expérience BTP</div>
+          <div class="team-desc">Après 9 ans dans une PME du bâtiment, Johanna connaît intimement vos défis quotidiens. Elle transforme cette expertise terrain en stratégies digitales qui génèrent des chantiers concrets.</div>
+          <div class="team-tags">
+            <span class="team-tag">Stratégie BTP</span>
+            <span class="team-tag">Croissance</span>
+            <span class="team-tag">Terrain</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marjorie -->
+      <div class="team-card reveal d2">
+        <div class="team-photo-wrap">
+          <img src="team/marjorie.jpg" alt="Marjorie C." class="team-photo">
+          <div class="team-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Marjorie C.</div>
+          <div class="team-role">Experte Communication</div>
+          <div class="team-desc">Fait briller votre image. Spécialiste réseaux sociaux et identité visuelle.</div>
+          <div class="team-tags">
+            <span class="team-tag">Réseaux sociaux</span>
+            <span class="team-tag">Branding</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cindy -->
+      <div class="team-card reveal d3">
+        <div class="team-photo-wrap">
+          <img src="team/cindy.jpg" alt="Cindy G." class="team-photo">
+          <div class="team-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Cindy G.</div>
+          <div class="team-role">Experte SEO Local</div>
+          <div class="team-desc">Vous place #1 sur Google. Spécialiste référencement local.</div>
+          <div class="team-tags">
+            <span class="team-tag">SEO Local</span>
+            <span class="team-tag">Visibilité</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kathleen -->
+      <div class="team-card reveal d4">
+        <div class="team-photo-wrap">
+          <img src="team/kathleen.jpg" alt="Kathleen W." class="team-photo">
+          <div class="team-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Kathleen W.</div>
+          <div class="team-role">Experte Publicité</div>
+          <div class="team-desc">Génère vos demandes de devis. Experte campagnes Meta et Google Ads.</div>
+          <div class="team-tags">
+            <span class="team-tag">Meta Ads</span>
+            <span class="team-tag">Google Ads</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alicia -->
+      <div class="team-card team-card-full reveal d5">
+        <div class="team-photo-wrap">
+          <img src="team/alicia.jpg" alt="Alicia C." class="team-photo">
+          <div class="team-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.54-.54a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Alicia C.</div>
+          <div class="team-role">Support Client</div>
+          <div class="team-desc">Votre contact privilégié. Support technique et suivi communication.</div>
+          <div class="team-tags">
+            <span class="team-tag">Support</span>
+            <span class="team-tag">Relation client</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -2902,25 +3137,25 @@ footer {
       <div class="section-tag">Questions fréquentes</div>
       <h2 class="section-title">Ce que les artisans nous demandent <em>avant de réserver</em></h2>
     </div>
-    <div class="faq-list reveal">
+    <div class="faq-list">
 
-      <div class="faq-item">
+      <div class="faq-item reveal d1">
         <button class="faq-q" onclick="toggleFaq(this)">
           Vous travaillez dans toute la France ?
           <span class="faq-chevron">+</span>
         </button>
-        <div class="faq-a">Oui, on est 100% à distance. On accompagne des artisans BTP partout en France — de Paris à Marseille, en passant par Lyon, Bordeaux, Nantes ou Toulouse. La zone géographique ne change rien à notre méthode : on connaît les recherches locales de tes clients et on cible ta ville précisément.</div>
+        <div class="faq-a">Oui, on est 100% à distance. On accompagne des artisans BTP partout en France, de Paris à Marseille en passant par Lyon, Bordeaux, Nantes ou Toulouse. La zone géographique ne change rien à notre méthode : on connaît les recherches locales de tes clients et on cible ta ville précisément.</div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal d2">
         <button class="faq-q" onclick="toggleFaq(this)">
           Combien de temps avant de voir des résultats sur Google ?
           <span class="faq-chevron">+</span>
         </button>
-        <div class="faq-a"><strong>Fiche Google Business :</strong> les premières améliorations se voient en 30 à 60 jours. <strong>SEO local :</strong> un positionnement solide se construit sur 3 à 6 mois. C'est pour ça qu'on reste avec toi dans la durée — on ne te lâche pas au bout d'un mois.</div>
+        <div class="faq-a"><strong>Fiche Google Business :</strong> les premières améliorations se voient en 30 à 60 jours. <strong>SEO local :</strong> un positionnement solide se construit sur 3 à 6 mois. C'est pour ça qu'on reste avec toi dans la durée. On ne te lâche pas au bout d'un mois.</div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal d3">
         <button class="faq-q" onclick="toggleFaq(this)">
           Quelle différence avec une agence web classique ?
           <span class="faq-chevron">+</span>
@@ -2928,20 +3163,20 @@ footer {
         <div class="faq-a">Une agence généraliste te fait un joli site. Nous, on fait un site qui <strong>génère des appels</strong> pour un plombier, un électricien ou un carreleur. On connaît les mots que tapent tes clients, les concurrents qui dominent ta zone, et les arguments qui font décrocher le téléphone dans le BTP. C'est notre seul métier.</div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal d4">
         <button class="faq-q" onclick="toggleFaq(this)">
           Et si je n'ai pas encore de site internet ?
           <span class="faq-chevron">+</span>
         </button>
-        <div class="faq-a">C'est exactement pour ça qu'on est là. On construit tout depuis zéro : logo, site, fiche Google, référencement. Tu n'as besoin de rien avoir en amont — juste de vouloir que tes clients te trouvent.</div>
+        <div class="faq-a">C'est exactement pour ça qu'on est là. On construit tout depuis zéro : logo, site, fiche Google, référencement. Aucun prérequis. Il suffit de vouloir que tes clients te trouvent.</div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal d5">
         <button class="faq-q" onclick="toggleFaq(this)">
           Est-ce que je suis engagé sur une longue durée ?
           <span class="faq-chevron">+</span>
         </button>
-        <div class="faq-a">On t'explique tout lors du diagnostic. Ce qu'on peut dire dès maintenant : on ne croit pas aux contrats qui retiennent des clients qui ne sont pas satisfaits. Notre intérêt, c'est que tu aies des résultats — pas de te facturer pour rien.</div>
+        <div class="faq-a">On t'explique tout lors du diagnostic. Ce qu'on peut dire dès maintenant : on ne croit pas aux contrats qui retiennent des clients qui ne sont pas satisfaits. Notre intérêt, c'est que tu aies des résultats. Pas de te facturer pour rien.</div>
       </div>
 
     </div>
@@ -2992,7 +3227,7 @@ footer {
           </div>
           <div class="cta-process-step">
             <div class="cta-process-num">3</div>
-            <span>Tu repars avec un plan d'action clair — <strong>qu'on travaille ensemble ou pas</strong></span>
+            <span>Tu repars avec un plan d'action clair, <strong>qu'on travaille ensemble ou pas</strong></span>
           </div>
         </div>
         <button class="cta-main-btn" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah','_blank')">
@@ -3284,7 +3519,7 @@ function calculate() {
     bridgeAmt.textContent = lost.toLocaleString('fr-FR') + ' €';
     bridgeEl.style.display = 'block';
   }
-  if (ctaBtn) ctaBtn.textContent = 'Récupérer ces ' + lost.toLocaleString('fr-FR') + ' €/mois →';
+  if (ctaBtn) ctaBtn.textContent = 'Ces ' + lost.toLocaleString('fr-FR') + ' € sont à toi. Viens les chercher →';
   setTimeout(() => box.scrollIntoView({ behavior:'smooth', block:'nearest' }), 200);
 }
 
@@ -3362,7 +3597,7 @@ const ro = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08, rootMargin:'0px 0px -32px 0px' });
 
-document.querySelectorAll('.reveal, .rv-l, .rv-r').forEach(el => ro.observe(el));
+document.querySelectorAll('.reveal, .rv-l, .rv-r, .rv-up').forEach(el => ro.observe(el));
 
 /* ── FAQ accordéon ── */
 function toggleFaq(btn) {
@@ -3402,7 +3637,7 @@ function toggleFaq(btn) {
   function scheduleNext() {
     const delay = 3000 + Math.random() * 9000;
     setTimeout(function() {
-      // 70% chance de monter, 30% de descendre — mais reste entre min et max
+      // 70% chance de monter, 30% de descendre, mais reste entre min et max
       const goUp = Math.random() < 0.70;
       let next = goUp ? current + 1 : current - 1;
       next = Math.max(min, Math.min(max, next));
