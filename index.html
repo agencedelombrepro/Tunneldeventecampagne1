@@ -221,6 +221,8 @@ nav {
   flex-shrink: 0;
 }
 .nav-reveal-link:hover { color: var(--orange); border-color: var(--orange); background: rgba(239,127,21,.08); }
+.nav-reveal-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+.nav-reveal-sub { font-size: 9px; font-weight: 500; color: rgba(255,255,255,.35); letter-spacing: .3px; line-height: 1; margin-top: 1px; }
 @keyframes revealPulse {
   0%, 100% { border-color: rgba(255,255,255,.12); color: rgba(255,255,255,.6); }
   50% { border-color: rgba(239,127,21,.5); color: rgba(239,127,21,.9); }
@@ -1823,6 +1825,7 @@ footer {
   .nav-inner { height:58px; padding: 0 1rem; gap: .5rem; }
   .nav-logo-sub { display: none; }
   .nav-reveal-text { display: none; }
+  .nav-reveal-text-group { display: none; }
   .nav-cta-long { display: none; }
   .nav-cta-short { display: flex; align-items: center; justify-content: center; }
   .nav-cta { width: 44px; height: 44px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
@@ -2342,7 +2345,10 @@ footer {
     </a>
     <a href="#calculateur" class="nav-reveal-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
-      <span class="nav-reveal-text">Le Révélateur</span>
+      <span class="nav-reveal-text-group">
+        <span class="nav-reveal-text">Le Révélateur</span>
+        <span class="nav-reveal-sub">(clique ici)</span>
+      </span>
     </a>
     <a href="https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah" target="_blank" class="nav-cta" onclick="if(typeof fbq==='function')fbq('track','Lead')">
       <span class="nav-cta-long">Réserver mon Diagnostic Visibilité →</span>
