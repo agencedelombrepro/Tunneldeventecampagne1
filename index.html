@@ -227,16 +227,6 @@ nav {
 }
 .nav-reveal-link { animation: revealPulse 3s ease-in-out infinite; }
 .nav-cta-short { display: none; }
-@media (max-width: 600px) {
-  .nav-inner { padding: 0 1rem; gap: .5rem; }
-  .nav-logo-sub { display: none; }
-  .nav-reveal-text { display: none; }
-  .nav-reveal-link { padding: .45rem .6rem; }
-  .nav-cta-long { display: none; }
-  .nav-cta-short { display: flex; align-items: center; justify-content: center; }
-  .nav-cta { width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
-  .nav-reveal-link { width: 40px; height: 40px; padding: 0; justify-content: center; }
-}
 
 .nav-cta {
   background: var(--orange);
@@ -776,7 +766,7 @@ nav {
    SECTION GÉNÉRIQUE
 ═══════════════════════════════════════════ */
 .section {
-  padding: 80px 0;
+  padding: 64px 0;
   background-image: linear-gradient(rgba(0,0,0,.028) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(0,0,0,.028) 1px, transparent 1px);
   background-size: 48px 48px;
@@ -787,7 +777,7 @@ nav {
                     linear-gradient(90deg, rgba(0,0,0,.028) 1px, transparent 1px);
   background-size: 48px 48px;
 }
-.section-dark { background: var(--dark); padding:80px 0; }
+.section-dark { background: var(--dark); padding:64px 0; }
 .section-no-grid { background-image: none; }
 
 .section-tag {
@@ -1797,6 +1787,19 @@ footer {
 }
 
 /* ═══════════════════════════════════════════
+   FLÈCHES INTER-SECTIONS
+═══════════════════════════════════════════ */
+.section-arrow {
+  display: flex;
+  justify-content: center;
+  margin: -8px 0;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+@media (max-width: 768px) { .section-arrow { display: none; } }
+
+/* ═══════════════════════════════════════════
    RESPONSIVE,TABLET
 ═══════════════════════════════════════════ */
 /* ── Décompte prix ─────────────────────── */
@@ -1817,7 +1820,13 @@ footer {
   .wrap { padding: 0 1.1rem; }
   .topbar { display:none; }
   nav { top:0; }
-  .nav-inner { height:58px; }
+  .nav-inner { height:58px; padding: 0 1rem; gap: .5rem; }
+  .nav-logo-sub { display: none; }
+  .nav-reveal-text { display: none; }
+  .nav-cta-long { display: none; }
+  .nav-cta-short { display: flex; align-items: center; justify-content: center; }
+  .nav-cta { width: 44px; height: 44px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+  .nav-reveal-link { width: 44px; height: 44px; padding: 0; justify-content: center; gap: 0; }
 
   /* Hero mobile : 1 colonne */
   .hero-section { padding: 48px 0 24px; }
@@ -2519,6 +2528,7 @@ footer {
   </div>
 </section>
 
+<div class="section-arrow"><svg width="32" height="52" viewBox="0 0 32 52" fill="none"><path d="M16,2 C13,12 19,22 15,36 C14,40 15,44 16,48" stroke="#EF7F15" stroke-width="2.2" stroke-linecap="round" opacity="0.45"/><path d="M9,40 L16,50 L23,40" stroke="#EF7F15" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/></svg></div>
 <!-- ══════════════════════════════════════
      SECTION SAISONNIÈRE
 ══════════════════════════════════════ -->
@@ -2568,6 +2578,7 @@ footer {
   </div>
 </section>
 
+<div class="section-arrow"><svg width="32" height="52" viewBox="0 0 32 52" fill="none"><path d="M16,2 C13,12 19,22 15,36 C14,40 15,44 16,48" stroke="#EF7F15" stroke-width="2.2" stroke-linecap="round" opacity="0.45"/><path d="M9,40 L16,50 L23,40" stroke="#EF7F15" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/></svg></div>
 <!-- ══════════════════════════════════════
      STATS BAR
 ══════════════════════════════════════ -->
@@ -2706,6 +2717,7 @@ footer {
   </div>
 </section>
 
+<div class="section-arrow"><svg width="32" height="52" viewBox="0 0 32 52" fill="none"><path d="M16,2 C13,12 19,22 15,36 C14,40 15,44 16,48" stroke="#EF7F15" stroke-width="2.2" stroke-linecap="round" opacity="0.45"/><path d="M9,40 L16,50 L23,40" stroke="#EF7F15" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/></svg></div>
 <!-- ══════════════════════════════════════
      DIAGNOSTIC,Ce qu'on analyse
 ══════════════════════════════════════ -->
@@ -2864,6 +2876,7 @@ footer {
   </div>
 </section>
 
+<div class="section-arrow"><svg width="32" height="52" viewBox="0 0 32 52" fill="none"><path d="M16,2 C13,12 19,22 15,36 C14,40 15,44 16,48" stroke="#EF7F15" stroke-width="2.2" stroke-linecap="round" opacity="0.45"/><path d="M9,40 L16,50 L23,40" stroke="#EF7F15" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/></svg></div>
 <!-- ══════════════════════════════════════
      OFFRE : CE QU'ON CONSTRUIT
 ══════════════════════════════════════ -->
