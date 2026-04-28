@@ -226,7 +226,16 @@ nav {
   50% { border-color: rgba(239,127,21,.5); color: rgba(239,127,21,.9); }
 }
 .nav-reveal-link { animation: revealPulse 3s ease-in-out infinite; }
-@media (max-width: 480px) { .nav-reveal-link span { display: none; } }
+.nav-cta-short { display: none; }
+@media (max-width: 600px) {
+  .nav-inner { padding: 0 1rem; gap: .5rem; }
+  .nav-logo-sub { display: none; }
+  .nav-reveal-text { display: none; }
+  .nav-reveal-link { padding: .45rem .6rem; }
+  .nav-cta-long { display: none; }
+  .nav-cta-short { display: inline; }
+  .nav-cta { padding: 8px 14px; font-size: 12px; }
+}
 
 .nav-cta {
   background: var(--orange);
@@ -2314,9 +2323,12 @@ footer {
     </a>
     <a href="#calculateur" class="nav-reveal-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
-      Le Révélateur
+      <span class="nav-reveal-text">Le Révélateur</span>
     </a>
-    <a href="https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah" target="_blank" class="nav-cta" onclick="if(typeof fbq==='function')fbq('track','Lead')">Réserver mon Diagnostic Visibilité →</a>
+    <a href="https://api.leadconnectorhq.com/widget/bookings/diagnostic-artisanszzpxy8wpazah" target="_blank" class="nav-cta" onclick="if(typeof fbq==='function')fbq('track','Lead')">
+      <span class="nav-cta-long">Réserver mon Diagnostic Visibilité →</span>
+      <span class="nav-cta-short">Réserver →</span>
+    </a>
   </div>
 </nav>
 </div><!-- /.header-sticky -->
