@@ -52,7 +52,7 @@ fbq('track','PageView');
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 body {
@@ -234,7 +234,8 @@ nav {
   .nav-reveal-link { padding: .45rem .6rem; }
   .nav-cta-long { display: none; }
   .nav-cta-short { display: flex; align-items: center; justify-content: center; }
-  .nav-cta { padding: 9px 12px; }
+  .nav-cta { width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+  .nav-reveal-link { width: 40px; height: 40px; padding: 0; justify-content: center; }
 }
 
 .nav-cta {
