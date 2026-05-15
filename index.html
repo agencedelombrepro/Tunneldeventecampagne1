@@ -19,6 +19,14 @@ fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=810327792040286&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
+<script>
+// Capture fbclid pour attribution Meta inter-sessions
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  var fbclid = p.get('fbclid');
+  if (fbclid) sessionStorage.setItem('fbclid', fbclid);
+})();
+</script>
 <style>
 /* ═══════════════════════════════════════════
    TOKENS
